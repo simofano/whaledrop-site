@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="it" data-active="it" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whale Drop — Privacy</title>
+<meta name="description" content="Informativa sulla privacy di Whale Drop, app Android per bere più acqua. Nessun server, nessun account, nessun tracciamento.">
+<link rel="canonical" href="https://whaledrop.app/privacy/">
+<style>
+  :root { --ink:#1F3550; --muted:#7B90A8; --accent:#3D96E8; --line:#D9E8F6; --bg:#F2F5F9; --card:#fff; }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#EAF2FA; --muted:#93A9C0; --accent:#3D96E8; --line:#2A415A; --bg:#0E1B29; --card:#16283A; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.7;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 1.9rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1.25rem; margin: 2.5rem 0 .5rem; }
+  .updated { color: var(--muted); margin: 0 0 2rem; font-size: .95rem; }
+  .lead { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1rem 1.25rem; }
+  table { border-collapse: collapse; width: 100%; margin-top: .5rem; }
+  th, td { text-align: left; padding: .6rem .5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; }
+  a { color: var(--accent); }
+  code { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: .1rem .35rem; font-size: .9em; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .9rem; }
+  nav.top { margin: 0 0 1rem; font-size: .95rem; }
+  nav.top a { text-decoration: none; font-weight: 600; }
+  nav.lang { display: flex; flex-wrap: wrap; gap: .35rem; }
+  nav.lang a { display: block; line-height: 0; border: 2px solid transparent; border-radius: 7px; padding: 1px; opacity: .75; transition: opacity .15s, transform .15s; }
+  nav.lang a:hover { opacity: 1; transform: translateY(-1px); }
+  nav.lang a[aria-current="true"] { opacity: 1; border-color: var(--accent); }
+  nav.lang img { width: 28px; height: 20px; border-radius: 4px; object-fit: cover; display: block; }
+  /* Una sezione per lingua: visibile solo quella attiva. Senza JavaScript restano tutte visibili. */
+  section[data-lang] { display: none; }
+  html[data-active="it"] section[data-lang="it"],
+  html[data-active="en"] section[data-lang="en"],
+  html[data-active="de"] section[data-lang="de"],
+  html[data-active="fr"] section[data-lang="fr"],
+  html[data-active="es"] section[data-lang="es"] { display: block; }
+  html.nojs section[data-lang] { display: block; }
+  html.nojs section[data-lang] + section[data-lang] { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 2rem; }
+</style>
+</head>
+<body>
+<main>
+  <nav class="top"><a href="/">&larr; Whale Drop</a></nav>
+  <nav class="lang" aria-label="Lingua / Language">
+    <a href="?lang=it" data-pick="it" title="Italiano" aria-current="true"><img src="/img/flags/it.svg" alt="Italiano"></a>
+    <a href="?lang=en" data-pick="en" title="English"><img src="/img/flags/en.svg" alt="English"></a>
+    <a href="?lang=de" data-pick="de" title="Deutsch"><img src="/img/flags/de.svg" alt="Deutsch"></a>
+    <a href="?lang=fr" data-pick="fr" title="Français"><img src="/img/flags/fr.svg" alt="Français"></a>
+    <a href="?lang=es" data-pick="es" title="Español"><img src="/img/flags/es.svg" alt="Español"></a>
+  </nav>
+
+  <!-- ===================================================== ITALIANO -->
+  <section data-lang="it" lang="it">
+    <h1>Informativa sulla privacy — Whale Drop</h1>
+    <p class="updated">Ultimo aggiornamento: 31 luglio 2026</p>
+
+    <p class="lead">
+      Whale Drop è un'app che ricorda di bere e tiene il conto dell'acqua bevuta durante la giornata.
+      Questa informativa spiega quali dati tratta e cosa esce dal telefono.
+    </p>
+
+    <p>
+      In breve: <strong>non esistono server di Whale Drop</strong>, non c'è alcun account, non c'è
+      pubblicità e non c'è nessun sistema di analisi o tracciamento. Tutto quello che registri resta
+      sul tuo dispositivo.
+    </p>
+
+    <h2>Dati che restano sul dispositivo</h2>
+    <p>L'app salva in locale, nella memoria privata dell'app:</p>
+    <ul>
+      <li>le bevute registrate (quantità in ml, tipo di bevuta, data e ora);</li>
+      <li>le tue impostazioni: obiettivo giornaliero, intervallo dei promemoria, suono, fascia
+          silenziosa, bevute rapide personalizzate;</li>
+      <li>i dati del profilo che inserisci nel calcolo del fabbisogno: sesso, anno di nascita, altezza,
+          peso, livello di attività e, se le attivi, le condizioni di gravidanza o allattamento.</li>
+    </ul>
+    <p>
+      Questi dati <strong>non vengono trasmessi a nessuno</strong>: non lasciano il telefono, se non
+      attraverso il backup di sistema di Android, qualora tu lo abbia attivato nelle impostazioni del
+      tuo dispositivo (in quel caso è Google a gestirlo, secondo le proprie condizioni).
+    </p>
+    <p>
+      Puoi cancellare tutto in qualsiasi momento disinstallando l'app o svuotandone i dati dalle
+      impostazioni di Android.
+    </p>
+
+    <h2>Posizione: solo per il meteo, solo se la attivi</h2>
+    <p>
+      La funzione <strong>"Adatta al meteo"</strong> è disattivata per impostazione predefinita. Se
+      decidi di attivarla, l'app chiede il permesso di <strong>posizione approssimativa</strong>
+      (<code>ACCESS_COARSE_LOCATION</code>) e la usa esclusivamente per aumentare l'obiettivo
+      giornaliero nei giorni caldi.
+    </p>
+    <p>Come funziona nel dettaglio:</p>
+    <ul>
+      <li>l'app legge l'ultima posizione approssimativa già nota al sistema (non attiva il GPS e non
+          traccia i tuoi spostamenti);</li>
+      <li><strong>una volta al giorno</strong> invia latitudine e longitudine al servizio meteo
+          <strong>Open-Meteo</strong> (<code>api.open-meteo.com</code>) per ottenere la temperatura
+          massima prevista nella tua zona;</li>
+      <li>della risposta l'app conserva solo un numero: i millilitri aggiuntivi del giorno.</li>
+    </ul>
+    <p>
+      La posizione <strong>non viene salvata</strong> dall'app, non viene associata a un
+      identificativo, non viene condivisa con altri e non viene usata per nessun altro scopo. Se
+      disattivi "Adatta al meteo" o neghi il permesso, nessuna richiesta di rete viene effettuata e
+      l'app continua a funzionare normalmente.
+    </p>
+    <p>
+      Open-Meteo è un servizio terzo che tratta i dati secondo la propria informativa, consultabile su
+      <a href="https://open-meteo.com/en/terms">open-meteo.com</a>. Whale Drop non invia alcun dato
+      personale oltre alle coordinate approssimative necessarie alla richiesta meteo.
+    </p>
+
+    <h2>Permessi richiesti e a cosa servono</h2>
+    <table>
+      <tr><th>Permesso</th><th>Perché</th></tr>
+      <tr><td>Notifiche</td><td>mostrare i promemoria per bere</td></tr>
+      <tr><td>Sveglie e promemoria</td><td>far arrivare i promemoria all'orario giusto</td></tr>
+      <tr><td>Posizione approssimativa</td><td>solo se attivi "Adatta al meteo", per la temperatura della tua zona</td></tr>
+      <tr><td>Internet</td><td>solo per la richiesta meteo giornaliera</td></tr>
+      <tr><td>Avvio al riavvio del dispositivo</td><td>riprogrammare i promemoria dopo il riavvio</td></tr>
+    </table>
+
+    <h2>Bambini</h2>
+    <p>L'app non è rivolta a minori di 13 anni e non raccoglie consapevolmente dati che li riguardino.</p>
+
+    <h2>Modifiche a questa informativa</h2>
+    <p>
+      Se in futuro l'app cambierà il modo in cui tratta i dati, questa pagina verrà aggiornata e la
+      data in cima verrà modificata di conseguenza.
+    </p>
+
+    <h2>Contatti</h2>
+    <p>Per domande su questa informativa puoi scrivere a: <a href="mailto:onaf.dev@gmail.com">onaf.dev@gmail.com</a></p>
+
+    <footer>Whale Drop — app personale di idratazione per Android.</footer>
+  </section>
+
+  <!-- ===================================================== ENGLISH -->
+  <section data-lang="en" lang="en">
+    <h1>Privacy Policy — Whale Drop</h1>
+    <p class="updated">Last updated: 31 July 2026</p>
+
+    <p class="lead">
+      Whale Drop is an app that reminds you to drink and keeps count of the water you drink during
+      the day. This policy explains which data it handles and what leaves your phone.
+    </p>
+
+    <p>
+      In short: <strong>there are no Whale Drop servers</strong>, there is no account, no advertising
+      and no analytics or tracking of any kind. Everything you log stays on your device.
+    </p>
+
+    <h2>Data that stays on your device</h2>
+    <p>The app stores locally, in its private storage:</p>
+    <ul>
+      <li>the drinks you log (amount in ml, type of drink, date and time);</li>
+      <li>your settings: daily goal, reminder interval, sound, quiet hours, custom quick drinks;</li>
+      <li>the profile data you enter for the needs calculation: sex, year of birth, height, weight,
+          activity level and, if you enable them, pregnancy or breastfeeding.</li>
+    </ul>
+    <p>
+      This data <strong>is not transmitted to anyone</strong>: it never leaves the phone, except
+      through Android's system backup if you have enabled it in your device settings (in that case
+      Google handles it, under its own terms).
+    </p>
+    <p>
+      You can delete everything at any time by uninstalling the app or clearing its data from
+      Android settings.
+    </p>
+
+    <h2>Location: only for the weather, only if you turn it on</h2>
+    <p>
+      The <strong>"Adjust to weather"</strong> feature is off by default. If you choose to enable it,
+      the app asks for the <strong>approximate location</strong> permission
+      (<code>ACCESS_COARSE_LOCATION</code>) and uses it solely to raise your daily goal on hot days.
+    </p>
+    <p>How it works in detail:</p>
+    <ul>
+      <li>the app reads the last approximate location already known to the system (it does not turn
+          on GPS and does not track your movements);</li>
+      <li><strong>once a day</strong> it sends latitude and longitude to the
+          <strong>Open-Meteo</strong> weather service (<code>api.open-meteo.com</code>) to get the
+          forecast maximum temperature for your area;</li>
+      <li>of the response, the app keeps only one number: the extra millilitres for the day.</li>
+    </ul>
+    <p>
+      Your location <strong>is not stored</strong> by the app, is not linked to any identifier, is
+      not shared with anyone and is not used for any other purpose. If you turn off "Adjust to
+      weather" or deny the permission, no network request is made and the app keeps working
+      normally.
+    </p>
+    <p>
+      Open-Meteo is a third-party service that processes data under its own policy, available at
+      <a href="https://open-meteo.com/en/terms">open-meteo.com</a>. Whale Drop sends no personal
+      data beyond the approximate coordinates needed for the weather request.
+    </p>
+
+    <h2>Permissions and what they are for</h2>
+    <table>
+      <tr><th>Permission</th><th>Why</th></tr>
+      <tr><td>Notifications</td><td>to show the drink reminders</td></tr>
+      <tr><td>Alarms and reminders</td><td>to deliver the reminders at the right time</td></tr>
+      <tr><td>Approximate location</td><td>only if you enable "Adjust to weather", for your area's temperature</td></tr>
+      <tr><td>Internet</td><td>only for the daily weather request</td></tr>
+      <tr><td>Run at device startup</td><td>to reschedule the reminders after a reboot</td></tr>
+    </table>
+
+    <h2>Children</h2>
+    <p>The app is not directed at children under 13 and does not knowingly collect data about them.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      If the app ever changes how it handles data, this page will be updated and the date at the top
+      changed accordingly.
+    </p>
+
+    <h2>Contact</h2>
+    <p>For questions about this policy you can write to: <a href="mailto:onaf.dev@gmail.com">onaf.dev@gmail.com</a></p>
+
+    <footer>Whale Drop — a personal hydration app for Android.</footer>
+  </section>
+
+  <!-- ===================================================== DEUTSCH -->
+  <section data-lang="de" lang="de">
+    <h1>Datenschutzerklärung — Whale Drop</h1>
+    <p class="updated">Zuletzt aktualisiert: 31. Juli 2026</p>
+
+    <p class="lead">
+      Whale Drop ist eine App, die ans Trinken erinnert und das über den Tag getrunkene Wasser
+      zählt. Diese Erklärung beschreibt, welche Daten sie verarbeitet und was das Telefon verlässt.
+    </p>
+
+    <p>
+      Kurz gesagt: <strong>es gibt keine Whale-Drop-Server</strong>, kein Konto, keine Werbung und
+      keinerlei Analyse- oder Tracking-System. Alles, was du einträgst, bleibt auf deinem Gerät.
+    </p>
+
+    <h2>Daten, die auf dem Gerät bleiben</h2>
+    <p>Die App speichert lokal, im privaten Speicher der App:</p>
+    <ul>
+      <li>die eingetragenen Getränke (Menge in ml, Art des Getränks, Datum und Uhrzeit);</li>
+      <li>deine Einstellungen: Tagesziel, Erinnerungsintervall, Ton, Ruhezeiten, eigene
+          Schnellgetränke;</li>
+      <li>die Profildaten, die du für die Bedarfsberechnung eingibst: Geschlecht, Geburtsjahr,
+          Größe, Gewicht, Aktivitätsniveau und, falls aktiviert, Schwangerschaft oder Stillzeit.</li>
+    </ul>
+    <p>
+      Diese Daten <strong>werden an niemanden übermittelt</strong>: sie verlassen das Telefon nicht,
+      außer über die Android-Systemsicherung, falls du sie in den Geräteeinstellungen aktiviert hast
+      (in diesem Fall verwaltet Google sie nach eigenen Bedingungen).
+    </p>
+    <p>
+      Du kannst jederzeit alles löschen, indem du die App deinstallierst oder ihre Daten in den
+      Android-Einstellungen löschst.
+    </p>
+
+    <h2>Standort: nur für das Wetter, nur wenn du es einschaltest</h2>
+    <p>
+      Die Funktion <strong>„Ans Wetter anpassen“</strong> ist standardmäßig ausgeschaltet. Wenn du
+      sie aktivierst, fragt die App nach der Berechtigung für den <strong>ungefähren Standort</strong>
+      (<code>ACCESS_COARSE_LOCATION</code>) und nutzt ihn ausschließlich, um das Tagesziel an heißen
+      Tagen zu erhöhen.
+    </p>
+    <p>So funktioniert es im Detail:</p>
+    <ul>
+      <li>die App liest den letzten ungefähren Standort, der dem System bereits bekannt ist (sie
+          schaltet kein GPS ein und verfolgt deine Bewegungen nicht);</li>
+      <li><strong>einmal am Tag</strong> sendet sie Breiten- und Längengrad an den Wetterdienst
+          <strong>Open-Meteo</strong> (<code>api.open-meteo.com</code>), um die vorhergesagte
+          Höchsttemperatur für deine Gegend zu erhalten;</li>
+      <li>von der Antwort behält die App nur eine Zahl: die zusätzlichen Milliliter des Tages.</li>
+    </ul>
+    <p>
+      Der Standort <strong>wird nicht gespeichert</strong>, keiner Kennung zugeordnet, mit niemandem
+      geteilt und für keinen anderen Zweck verwendet. Wenn du „Ans Wetter anpassen“ ausschaltest oder
+      die Berechtigung verweigerst, findet keine Netzwerkanfrage statt und die App funktioniert
+      normal weiter.
+    </p>
+    <p>
+      Open-Meteo ist ein Drittanbieter, der Daten nach eigener Datenschutzerklärung verarbeitet,
+      abrufbar unter <a href="https://open-meteo.com/en/terms">open-meteo.com</a>. Whale Drop sendet
+      keine personenbezogenen Daten außer den ungefähren Koordinaten, die für die Wetteranfrage nötig
+      sind.
+    </p>
+
+    <h2>Berechtigungen und wozu sie dienen</h2>
+    <table>
+      <tr><th>Berechtigung</th><th>Warum</th></tr>
+      <tr><td>Benachrichtigungen</td><td>um die Trinkerinnerungen anzuzeigen</td></tr>
+      <tr><td>Wecker und Erinnerungen</td><td>damit die Erinnerungen zur richtigen Zeit ankommen</td></tr>
+      <tr><td>Ungefährer Standort</td><td>nur wenn „Ans Wetter anpassen“ aktiv ist, für die Temperatur deiner Gegend</td></tr>
+      <tr><td>Internet</td><td>nur für die tägliche Wetteranfrage</td></tr>
+      <tr><td>Start nach Geräteneustart</td><td>um die Erinnerungen nach einem Neustart neu zu planen</td></tr>
+    </table>
+
+    <h2>Kinder</h2>
+    <p>Die App richtet sich nicht an Kinder unter 13 Jahren und erhebt wissentlich keine Daten über sie.</p>
+
+    <h2>Änderungen dieser Erklärung</h2>
+    <p>
+      Sollte die App künftig den Umgang mit Daten ändern, wird diese Seite aktualisiert und das Datum
+      oben entsprechend angepasst.
+    </p>
+
+    <h2>Kontakt</h2>
+    <p>Bei Fragen zu dieser Erklärung schreib an: <a href="mailto:onaf.dev@gmail.com">onaf.dev@gmail.com</a></p>
+
+    <footer>Whale Drop — persönliche Trink-App für Android.</footer>
+  </section>
+
+  <!-- ===================================================== FRANÇAIS -->
+  <section data-lang="fr" lang="fr">
+    <h1>Politique de confidentialité — Whale Drop</h1>
+    <p class="updated">Dernière mise à jour : 31 juillet 2026</p>
+
+    <p class="lead">
+      Whale Drop est une application qui rappelle de boire et compte l'eau bue au cours de la
+      journée. Cette politique explique quelles données elle traite et ce qui sort du téléphone.
+    </p>
+
+    <p>
+      En bref : <strong>il n'existe aucun serveur Whale Drop</strong>, aucun compte, aucune publicité
+      et aucun système d'analyse ou de suivi. Tout ce que tu enregistres reste sur ton appareil.
+    </p>
+
+    <h2>Données qui restent sur l'appareil</h2>
+    <p>L'application enregistre en local, dans sa mémoire privée :</p>
+    <ul>
+      <li>les boissons enregistrées (quantité en ml, type de boisson, date et heure) ;</li>
+      <li>tes réglages : objectif quotidien, intervalle des rappels, son, plage silencieuse,
+          boissons rapides personnalisées ;</li>
+      <li>les données de profil saisies pour le calcul des besoins : sexe, année de naissance,
+          taille, poids, niveau d'activité et, si tu les actives, grossesse ou allaitement.</li>
+    </ul>
+    <p>
+      Ces données <strong>ne sont transmises à personne</strong> : elles ne quittent pas le
+      téléphone, sauf via la sauvegarde système d'Android si tu l'as activée dans les réglages de ton
+      appareil (dans ce cas c'est Google qui la gère, selon ses propres conditions).
+    </p>
+    <p>
+      Tu peux tout effacer à tout moment en désinstallant l'application ou en supprimant ses données
+      depuis les réglages d'Android.
+    </p>
+
+    <h2>Position : seulement pour la météo, seulement si tu l'actives</h2>
+    <p>
+      La fonction <strong>« Adapter à la météo »</strong> est désactivée par défaut. Si tu décides de
+      l'activer, l'application demande l'autorisation de <strong>position approximative</strong>
+      (<code>ACCESS_COARSE_LOCATION</code>) et l'utilise uniquement pour augmenter l'objectif
+      quotidien les jours de chaleur.
+    </p>
+    <p>Comment ça marche en détail :</p>
+    <ul>
+      <li>l'application lit la dernière position approximative déjà connue du système (elle
+          n'active pas le GPS et ne suit pas tes déplacements) ;</li>
+      <li><strong>une fois par jour</strong>, elle envoie latitude et longitude au service météo
+          <strong>Open-Meteo</strong> (<code>api.open-meteo.com</code>) pour obtenir la température
+          maximale prévue dans ta zone ;</li>
+      <li>de la réponse, l'application ne conserve qu'un nombre : les millilitres supplémentaires
+          du jour.</li>
+    </ul>
+    <p>
+      La position <strong>n'est pas enregistrée</strong> par l'application, n'est associée à aucun
+      identifiant, n'est partagée avec personne et n'est utilisée à aucune autre fin. Si tu
+      désactives « Adapter à la météo » ou refuses l'autorisation, aucune requête réseau n'est
+      effectuée et l'application continue de fonctionner normalement.
+    </p>
+    <p>
+      Open-Meteo est un service tiers qui traite les données selon sa propre politique, consultable
+      sur <a href="https://open-meteo.com/en/terms">open-meteo.com</a>. Whale Drop n'envoie aucune
+      donnée personnelle en dehors des coordonnées approximatives nécessaires à la requête météo.
+    </p>
+
+    <h2>Autorisations demandées et à quoi elles servent</h2>
+    <table>
+      <tr><th>Autorisation</th><th>Pourquoi</th></tr>
+      <tr><td>Notifications</td><td>afficher les rappels pour boire</td></tr>
+      <tr><td>Alarmes et rappels</td><td>faire arriver les rappels à la bonne heure</td></tr>
+      <tr><td>Position approximative</td><td>seulement si tu actives « Adapter à la météo », pour la température de ta zone</td></tr>
+      <tr><td>Internet</td><td>seulement pour la requête météo quotidienne</td></tr>
+      <tr><td>Lancement au redémarrage</td><td>reprogrammer les rappels après un redémarrage</td></tr>
+    </table>
+
+    <h2>Enfants</h2>
+    <p>L'application ne s'adresse pas aux moins de 13 ans et ne collecte pas sciemment de données les concernant.</p>
+
+    <h2>Modifications de cette politique</h2>
+    <p>
+      Si l'application change un jour sa façon de traiter les données, cette page sera mise à jour
+      et la date en haut modifiée en conséquence.
+    </p>
+
+    <h2>Contact</h2>
+    <p>Pour toute question sur cette politique, écris à : <a href="mailto:onaf.dev@gmail.com">onaf.dev@gmail.com</a></p>
+
+    <footer>Whale Drop — application personnelle d'hydratation pour Android.</footer>
+  </section>
+
+  <!-- ===================================================== ESPAÑOL -->
+  <section data-lang="es" lang="es">
+    <h1>Política de privacidad — Whale Drop</h1>
+    <p class="updated">Última actualización: 31 de julio de 2026</p>
+
+    <p class="lead">
+      Whale Drop es una app que recuerda beber y lleva la cuenta del agua bebida durante el día.
+      Esta política explica qué datos trata y qué sale del teléfono.
+    </p>
+
+    <p>
+      En resumen: <strong>no existen servidores de Whale Drop</strong>, no hay ninguna cuenta, no hay
+      publicidad y no hay ningún sistema de análisis ni de rastreo. Todo lo que registras se queda en
+      tu dispositivo.
+    </p>
+
+    <h2>Datos que se quedan en el dispositivo</h2>
+    <p>La app guarda en local, en la memoria privada de la app:</p>
+    <ul>
+      <li>las bebidas registradas (cantidad en ml, tipo de bebida, fecha y hora);</li>
+      <li>tus ajustes: objetivo diario, intervalo de los recordatorios, sonido, franja silenciosa,
+          bebidas rápidas personalizadas;</li>
+      <li>los datos del perfil que introduces para el cálculo de las necesidades: sexo, año de
+          nacimiento, altura, peso, nivel de actividad y, si los activas, embarazo o lactancia.</li>
+    </ul>
+    <p>
+      Estos datos <strong>no se transmiten a nadie</strong>: no salen del teléfono, salvo a través de
+      la copia de seguridad del sistema de Android, si la has activado en los ajustes de tu
+      dispositivo (en ese caso la gestiona Google, según sus propias condiciones).
+    </p>
+    <p>
+      Puedes borrarlo todo en cualquier momento desinstalando la app o vaciando sus datos desde los
+      ajustes de Android.
+    </p>
+
+    <h2>Ubicación: solo para el tiempo, solo si la activas</h2>
+    <p>
+      La función <strong>"Adaptar al tiempo"</strong> está desactivada de forma predeterminada. Si
+      decides activarla, la app pide el permiso de <strong>ubicación aproximada</strong>
+      (<code>ACCESS_COARSE_LOCATION</code>) y la usa exclusivamente para aumentar el objetivo diario
+      en los días de calor.
+    </p>
+    <p>Cómo funciona en detalle:</p>
+    <ul>
+      <li>la app lee la última ubicación aproximada que el sistema ya conoce (no activa el GPS ni
+          rastrea tus desplazamientos);</li>
+      <li><strong>una vez al día</strong> envía latitud y longitud al servicio meteorológico
+          <strong>Open-Meteo</strong> (<code>api.open-meteo.com</code>) para obtener la temperatura
+          máxima prevista en tu zona;</li>
+      <li>de la respuesta la app conserva solo un número: los mililitros adicionales del día.</li>
+    </ul>
+    <p>
+      La ubicación <strong>no se guarda</strong> en la app, no se asocia a ningún identificador, no
+      se comparte con nadie y no se usa para ningún otro fin. Si desactivas "Adaptar al tiempo" o
+      deniegas el permiso, no se realiza ninguna petición de red y la app sigue funcionando con
+      normalidad.
+    </p>
+    <p>
+      Open-Meteo es un servicio de terceros que trata los datos según su propia política, disponible
+      en <a href="https://open-meteo.com/en/terms">open-meteo.com</a>. Whale Drop no envía ningún
+      dato personal más allá de las coordenadas aproximadas necesarias para la petición
+      meteorológica.
+    </p>
+
+    <h2>Permisos solicitados y para qué sirven</h2>
+    <table>
+      <tr><th>Permiso</th><th>Por qué</th></tr>
+      <tr><td>Notificaciones</td><td>mostrar los recordatorios para beber</td></tr>
+      <tr><td>Alarmas y recordatorios</td><td>hacer llegar los recordatorios a la hora correcta</td></tr>
+      <tr><td>Ubicación aproximada</td><td>solo si activas "Adaptar al tiempo", para la temperatura de tu zona</td></tr>
+      <tr><td>Internet</td><td>solo para la petición meteorológica diaria</td></tr>
+      <tr><td>Inicio al reiniciar el dispositivo</td><td>reprogramar los recordatorios tras el reinicio</td></tr>
+    </table>
+
+    <h2>Menores</h2>
+    <p>La app no está dirigida a menores de 13 años y no recoge conscientemente datos sobre ellos.</p>
+
+    <h2>Cambios en esta política</h2>
+    <p>
+      Si en el futuro la app cambia la forma en que trata los datos, esta página se actualizará y la
+      fecha de arriba se modificará en consecuencia.
+    </p>
+
+    <h2>Contacto</h2>
+    <p>Para preguntas sobre esta política puedes escribir a: <a href="mailto:onaf.dev@gmail.com">onaf.dev@gmail.com</a></p>
+
+    <footer>Whale Drop — app personal de hidratación para Android.</footer>
+  </section>
+</main>
+
+<script>
+  // Lingua: ?lang=xx nell'URL vince; altrimenti quella del browser se è fra le cinque; altrimenti
+  // inglese. Senza JavaScript la classe "nojs" non viene tolta e restano visibili tutte le sezioni.
+  (function () {
+    var supported = ['it', 'en', 'de', 'fr', 'es'];
+    var html = document.documentElement;
+    var titles = { it: 'Whale Drop — Privacy', en: 'Whale Drop — Privacy', de: 'Whale Drop — Datenschutz', fr: 'Whale Drop — Confidentialité', es: 'Whale Drop — Privacidad' };
+    function pick(lang) {
+      html.setAttribute('data-active', lang);
+      html.setAttribute('lang', lang);
+      document.title = titles[lang];
+      var links = document.querySelectorAll('nav.lang a');
+      for (var i = 0; i < links.length; i++) {
+        var l = links[i];
+        if (l.getAttribute('data-pick') === lang) l.setAttribute('aria-current', 'true');
+        else l.removeAttribute('aria-current');
+      }
+    }
+    var param = new URLSearchParams(location.search).get('lang');
+    var browser = (navigator.language || 'en').slice(0, 2).toLowerCase();
+    var lang = supported.indexOf(param) >= 0 ? param : (supported.indexOf(browser) >= 0 ? browser : 'en');
+    pick(lang);
+    var links = document.querySelectorAll('nav.lang a');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function (e) {
+        e.preventDefault();
+        var chosen = this.getAttribute('data-pick');
+        pick(chosen);
+        history.replaceState(null, '', '?lang=' + chosen);
+      });
+    }
+  })();
+</script>
+<script>document.documentElement.className = document.documentElement.className.replace('nojs', '');</script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whale Drop</title>
+<meta name="description" data-i18n-content="meta.description" content="Whale Drop ti ricorda di bere e tiene il conto dell'acqua durante la giornata. Prenditi cura della tua idratazione, un sorso alla volta.">
+<link rel="canonical" href="https://whaledrop.app/">
+<link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+<meta property="og:title" content="Whale Drop">
+<meta property="og:description" content="L'app Android che ti ricorda di bere e tiene il conto dell'acqua bevuta.">
+<meta property="og:image" content="https://whaledrop.app/img/promo-poster.jpg">
+<meta property="og:url" content="https://whaledrop.app/">
+<style>
+  :root {
+    --ink:#0F2238; --muted:#5F7690; --accent:#3D96E8; --drop:#1DBCEE; --deep:#0B7FC2; --line:#D9E8F6;
+    --bg:#F5F9FD; --card:#fff; --soft:#E7F3FC;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#EAF2FA; --muted:#93A9C0; --line:#22384F; --bg:#0A1522; --card:#132234; --soft:#17304A; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.6; }
+  a { color: var(--accent); }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* Testata fissa, trasparente sul video */
+  header { position: fixed; inset: 0 0 auto 0; z-index: 10; padding: .8rem 0; backdrop-filter: blur(10px); background: rgba(10,21,34,.35); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; color: #fff; font-weight: 800; font-size: 1.15rem; letter-spacing: .01em; }
+  .brand img { width: 34px; height: 34px; }
+  nav.lang { display: flex; flex-wrap: wrap; gap: .35rem; }
+  nav.lang a { display: block; line-height: 0; border: 2px solid transparent; border-radius: 7px; padding: 1px; opacity: .75; transition: opacity .15s, transform .15s; }
+  nav.lang a:hover { opacity: 1; transform: translateY(-1px); }
+  nav.lang a[aria-current="true"] { opacity: 1; border-color: #fff; }
+  nav.lang img { width: 28px; height: 20px; border-radius: 4px; object-fit: cover; display: block; }
+
+  /* Hero a tutto schermo con il video dietro */
+  .hero { position: relative; min-height: 92vh; display: grid; place-items: center; color: #fff; overflow: hidden; isolation: isolate; }
+  .hero video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(180deg, rgba(8,24,44,.55) 0%, rgba(8,24,44,.35) 45%, rgba(11,127,194,.75) 100%); }
+  .hero .inner { text-align: center; max-width: 42rem; padding: 6rem 1.25rem 4rem; }
+  .hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1.02; margin: 0 0 1rem; letter-spacing: -.02em; text-shadow: 0 6px 30px rgba(0,0,0,.35); }
+  .hero h1 span { color: #9FE7FF; }
+  .hero p.lead { font-size: clamp(1.05rem, 2.2vw, 1.35rem); color: rgba(255,255,255,.92); margin: 0 auto 2rem; max-width: 34rem; }
+  .cta { display: flex; flex-direction: column; align-items: center; gap: .6rem; }
+  .cta img { height: 68px; filter: drop-shadow(0 10px 25px rgba(0,0,0,.35)); transition: transform .2s; }
+  .cta a:hover img { transform: translateY(-2px) scale(1.03); }
+  .cta small { color: rgba(255,255,255,.8); }
+  .scroll-hint { position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,.75); font-size: .85rem; animation: bob 1.8s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 6px); } }
+
+  /* Fascia dei numeri */
+  .band { background: var(--deep); color: #fff; }
+  .band .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 1rem; padding: 1.6rem 1.25rem; text-align: center; }
+  .band b { display: block; font-size: 2rem; line-height: 1; letter-spacing: -.02em; }
+  .band span { font-size: .9rem; opacity: .9; }
+
+  section { padding: 4.5rem 0; }
+  h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin: 0 0 .4rem; letter-spacing: -.02em; }
+  p.sub { color: var(--muted); margin: 0 0 2.25rem; max-width: 40rem; font-size: 1.05rem; }
+
+  /* Funzioni: griglia con card colorate */
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.1rem; }
+  .feature { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 1.5rem; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+  .feature:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(11,127,194,.14); }
+  .feature .ico { width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, var(--drop), var(--deep)); color: #fff; display: grid; place-items: center; font-size: 1.6rem; margin-bottom: 1rem; box-shadow: 0 8px 18px rgba(11,127,194,.3); }
+  .feature h3 { margin: 0 0 .35rem; font-size: 1.1rem; }
+  .feature p { margin: 0; color: var(--muted); font-size: .97rem; }
+
+  /* Vetrina: notifica dentro una cornice telefono + foto */
+  .showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; align-items: start; }
+  .photos { display: contents; }
+  .photos figure { margin: 0; }
+  .photos img { width: 100%; height: auto; border-radius: 18px; display: block; box-shadow: 0 14px 30px rgba(15,34,56,.18); }
+  .photos figcaption { color: var(--muted); font-size: .85rem; margin-top: .5rem; }
+
+  /* Privacy: fascia scura */
+  .privacy { background: var(--ink); color: #fff; }
+  @media (prefers-color-scheme: dark) { .privacy { background: #060e18; } }
+  .privacy .wrap { display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; padding: 3rem 1.25rem; }
+  .privacy .ico { font-size: 2.6rem; }
+  .privacy h3 { margin: 0 0 .3rem; font-size: 1.3rem; }
+  .privacy p { margin: 0; color: rgba(255,255,255,.75); }
+  .privacy a.btn { color: var(--ink); background: #fff; text-decoration: none; padding: .7rem 1.1rem; border-radius: 999px; font-weight: 600; white-space: nowrap; }
+  footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: .9rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 760px) {
+    .hero { min-height: 88vh; }
+    .showcase { grid-template-columns: 1fr; }
+    .privacy .wrap { grid-template-columns: 1fr; text-align: center; }
+    section { padding: 3rem 0; }
+  }
+
+  /* Schermate: striscia scorrevole di telefoni */
+  .shots { display: flex; gap: 1rem; overflow-x: auto; padding: .5rem .25rem 1.25rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .shots figure { margin: 0; flex: 0 0 auto; width: clamp(11rem, 22vw, 15rem); scroll-snap-align: start; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 22px; border: 6px solid var(--ink); box-shadow: 0 16px 34px rgba(15,34,56,.22); background: var(--ink); }
+  @media (prefers-color-scheme: dark) { .shots img { border-color: #2A415A; background: #2A415A; } }
+  .shots figcaption { text-align: center; color: var(--muted); font-size: .9rem; margin-top: .6rem; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/img/logo.svg" alt=""> Whale Drop</a>
+      <nav class="lang" aria-label="Lingua / Language">
+        <a href="?lang=it" data-pick="it" title="Italiano" aria-current="true"><img src="/img/flags/it.svg" alt="Italiano"></a>
+        <a href="?lang=en" data-pick="en" title="English"><img src="/img/flags/en.svg" alt="English"></a>
+        <a href="?lang=de" data-pick="de" title="Deutsch"><img src="/img/flags/de.svg" alt="Deutsch"></a>
+        <a href="?lang=fr" data-pick="fr" title="Français"><img src="/img/flags/fr.svg" alt="Français"></a>
+        <a href="?lang=es" data-pick="es" title="Español"><img src="/img/flags/es.svg" alt="Español"></a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <video autoplay muted loop playsinline poster="/img/promo-poster.jpg" aria-hidden="true">
+      <source src="/img/promo.mp4" type="video/mp4">
+    </video>
+    <div class="inner">
+      <h1 data-i18n="hero.title">Prenditi cura della tua idratazione, <span>un sorso alla volta</span>.</h1>
+      <p class="lead" data-i18n="hero.lead">Whale Drop ti ricorda di bere e tiene il conto di quanto hai bevuto. Un obiettivo calcolato su di te, che si adatta al caldo, allo sport e a quello che mangi.</p>
+      <div class="cta">
+        <a id="play-link" href="https://play.google.com/store/apps/details?id=com.simofano.whaledrop">
+          <img id="play-badge" src="/img/play-it.svg" alt="Disponibile su Google Play">
+        </a>
+      </div>
+    </div>
+    <div class="scroll-hint" data-i18n="hero.scroll">Scorri ↓</div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <div><b>2</b><span data-i18n="band.1">tap per registrare</span></div>
+      <div><b>12</b><span data-i18n="band.2">bevande</span></div>
+      <div><b>5</b><span data-i18n="band.3">lingue</span></div>
+      <div><b>1</b><span data-i18n="band.4">obiettivo su misura</span></div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <h2 data-i18n="features.title">Cosa fa</h2>
+      <p class="sub" data-i18n="features.sub">Tutto quello che serve per bere di più, niente di quello che non serve.</p>
+      <div class="features">
+        <div class="feature"><div class="ico">🔔</div><h3 data-i18n="f1.t">Promemoria che non disturbano</h3><p data-i18n="f1.p">Un avviso a intervalli regolari, con fascia silenziosa e pulsanti rapidi per registrare senza aprire l'app.</p></div>
+        <div class="feature"><div class="ico">💧</div><h3 data-i18n="f2.t">Registrazione in due tap</h3><p data-i18n="f2.p">Preferiti con il tuo bicchiere o la tua borraccia, oppure la modalità guidata: bevanda, contenitore, conferma.</p></div>
+        <div class="feature"><div class="ico">🎯</div><h3 data-i18n="f3.t">Un obiettivo calcolato su di te</h3><p data-i18n="f3.p">Da sesso, età, altezza, peso, stile di vita e dieta. Si alza nei giorni di caldo, di sport e quando mangi meno frutta e verdura.</p></div>
+        <div class="feature"><div class="ico">🍵</div><h3 data-i18n="f4.t">Non solo acqua</h3><p data-i18n="f4.p">Tè, caffè, latte, succhi, bibite e alcolici, ciascuno con il suo peso reale sull'idratazione. Oppure solo acqua, se preferisci.</p></div>
+        <div class="feature"><div class="ico">📊</div><h3 data-i18n="f5.t">Statistiche e strisce</h3><p data-i18n="f5.p">Giorno, settimana e mese, ripartizione per bevanda, giorni di fila con l'obiettivo raggiunto e traguardi da sbloccare.</p></div>
+        <div class="feature"><div class="ico">📱</div><h3 data-i18n="f6.t">Widget sulla Home</h3><p data-i18n="f6.p">L'anello del giorno sempre sotto gli occhi, senza aprire l'app. In cinque lingue, tema chiaro e scuro, ml o once.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="screens">
+    <div class="wrap">
+    <h2 data-i18n="shots.title">Schermate</h2>
+      <p class="sub" data-i18n="shots.sub">L'app com'è davvero, nella tua lingua.</p>
+      <div class="shots">
+          <figure><img src="/img/shots/it/1.png" data-shot="1" alt="" loading="lazy"><figcaption data-i18n="shots.c1">Benvenuto</figcaption></figure>
+          <figure><img src="/img/shots/it/2.png" data-shot="2" alt="" loading="lazy"><figcaption data-i18n="shots.c2">La giornata</figcaption></figure>
+          <figure><img src="/img/shots/it/6.png" data-shot="6" alt="" loading="lazy"><figcaption data-i18n="shots.c6">Bevi in tre passi</figcaption></figure>
+          <figure><img src="/img/shots/it/3.png" data-shot="3" alt="" loading="lazy"><figcaption data-i18n="shots.c3">Statistiche</figcaption></figure>
+          <figure><img src="/img/shots/it/4.png" data-shot="4" alt="" loading="lazy"><figcaption data-i18n="shots.c4">Adatta al meteo</figcaption></figure>
+          <figure><img src="/img/shots/it/5.png" data-shot="5" alt="" loading="lazy"><figcaption data-i18n="shots.c5">Promemoria</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap">
+      <h2 data-i18n="gallery.title">Com'è fatta</h2>
+      <p class="sub" data-i18n="gallery.sub">Il promemoria, la giornata, il contatore.</p>
+      <div class="showcase">
+        <div class="photos">
+          <figure><img src="/img/hero-treadmill.jpg" alt="" loading="lazy"><figcaption data-i18n="gallery.c2">Ti raggiunge anche in palestra.</figcaption></figure>
+          <figure><img src="/img/gym.jpg" alt="" loading="lazy"><figcaption data-i18n="gallery.c3">Whale Drop, la compagna di allenamento.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy">
+    <div class="wrap">
+      <div class="ico">🔒</div>
+      <div>
+        <h3 data-i18n="privacy.t">I tuoi dati restano sul telefono</h3>
+        <p data-i18n="privacy.p">Nessun server, nessun tracciamento. L'unica richiesta di rete è quella al meteo, una volta al giorno, e solo se la attivi tu.</p>
+      </div>
+      <a class="btn" href="/privacy/" data-i18n="privacy.link">Leggi l'informativa</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span data-i18n="footer.left">Whale Drop — app di idratazione per Android.</span>
+      <span><a href="/privacy/" data-i18n="footer.privacy">Privacy</a> · <a href="mailto:onaf.dev@gmail.com" data-i18n="footer.contact">Contatti</a></span>
+    </div>
+  </footer>
+
+<script>
+  var I18N = {
+    it: {
+      "meta.description": "Whale Drop ti ricorda di bere e tiene il conto dell'acqua durante la giornata. Prenditi cura della tua idratazione, un sorso alla volta.",
+      "hero.title": "Prenditi cura della tua idratazione, <span>un sorso alla volta</span>.",
+      "hero.lead": "Whale Drop ti ricorda di bere e tiene il conto di quanto hai bevuto. Un obiettivo calcolato su di te, che si adatta al caldo, allo sport e a quello che mangi.",
+      "hero.badgeAlt": "Disponibile su Google Play", "hero.scroll": "Scorri ↓",
+      "band.1": "tap per registrare", "band.2": "bevande", "band.3": "lingue", "band.4": "obiettivo su misura",
+      "features.title": "Cosa fa", "features.sub": "Tutto quello che serve per bere di più, niente di quello che non serve.",
+      "f1.t": "Promemoria che non disturbano", "f1.p": "Un avviso a intervalli regolari, con fascia silenziosa e pulsanti rapidi per registrare senza aprire l'app.",
+      "f2.t": "Registrazione in due tap", "f2.p": "Preferiti con il tuo bicchiere o la tua borraccia, oppure la modalità guidata: bevanda, contenitore, conferma.",
+      "f3.t": "Un obiettivo calcolato su di te", "f3.p": "Da sesso, età, altezza, peso, stile di vita e dieta. Si alza nei giorni di caldo, di sport e quando mangi meno frutta e verdura.",
+      "f4.t": "Non solo acqua", "f4.p": "Tè, caffè, latte, succhi, bibite e alcolici, ciascuno con il suo peso reale sull'idratazione. Oppure solo acqua, se preferisci.",
+      "f5.t": "Statistiche e strisce", "f5.p": "Giorno, settimana e mese, ripartizione per bevanda, giorni di fila con l'obiettivo raggiunto e traguardi da sbloccare.",
+      "f6.t": "Widget sulla Home", "f6.p": "L'anello del giorno sempre sotto gli occhi, senza aprire l'app. In cinque lingue, tema chiaro e scuro, ml o once.",
+      "shots.title": "Schermate", "shots.sub": "L'app com'è davvero, nella tua lingua.",
+      "shots.c1": "Benvenuto", "shots.c2": "La giornata", "shots.c3": "Statistiche", "shots.c4": "Adatta al meteo", "shots.c5": "Promemoria", "shots.c6": "Bevi in tre passi",
+      "gallery.title": "Com'è fatta", "gallery.sub": "Il promemoria, la giornata, il contatore.", "gallery.c2": "Ti raggiunge anche in palestra.", "gallery.c3": "Whale Drop, la compagna di allenamento.",
+      "privacy.t": "I tuoi dati restano sul telefono",
+      "privacy.p": "Nessun server, nessun tracciamento. L'unica richiesta di rete è quella al meteo, una volta al giorno, e solo se la attivi tu.",
+      "privacy.link": "Leggi l'informativa",
+      "footer.left": "Whale Drop — app di idratazione per Android.", "footer.privacy": "Privacy", "footer.contact": "Contatti",
+      "title": "Whale Drop — Promemoria acqua"
+    },
+    en: {
+      "meta.description": "Whale Drop reminds you to drink and keeps count of your water through the day. Take care of your hydration, one sip at a time.",
+      "hero.title": "Take care of your hydration, <span>one sip at a time</span>.",
+      "hero.lead": "Whale Drop reminds you to drink and keeps count of what you drank. A goal computed for you, adjusting to hot days, sport and what you eat.",
+      "hero.badgeAlt": "Get it on Google Play", "hero.scroll": "Scroll ↓",
+      "band.1": "taps to log", "band.2": "drinks", "band.3": "languages", "band.4": "tailored goal",
+      "features.title": "What it does", "features.sub": "Everything you need to drink more, nothing you don't.",
+      "f1.t": "Reminders that don't nag", "f1.p": "A nudge at regular intervals, with quiet hours and quick buttons to log without opening the app.",
+      "f2.t": "Log in two taps", "f2.p": "Favourites with your own glass or bottle, or the guided mode: drink, container, confirm.",
+      "f3.t": "A goal computed for you", "f3.p": "From sex, age, height, weight, lifestyle and diet. It rises on hot days, on sport days and when you eat less fruit and veg.",
+      "f4.t": "Not just water", "f4.p": "Tea, coffee, milk, juice, soft drinks and alcohol, each with its real weight on hydration. Or water only, if you prefer.",
+      "f5.t": "Stats and streaks", "f5.p": "Day, week and month, breakdown by drink, days in a row on target and badges to unlock.",
+      "f6.t": "Home screen widget", "f6.p": "Today's ring always in sight, without opening the app. Five languages, light and dark theme, ml or fl oz.",
+      "shots.title": "Screens", "shots.sub": "The app as it really is, in your language.",
+      "shots.c1": "Welcome", "shots.c2": "Your day", "shots.c3": "Stats", "shots.c4": "Adjust to weather", "shots.c5": "Reminders", "shots.c6": "Log in three steps",
+      "gallery.title": "What it looks like", "gallery.sub": "The reminder, the day, the counter.", "gallery.c2": "It reaches you at the gym too.", "gallery.c3": "Whale Drop, your training partner.",
+      "privacy.t": "Your data stays on your phone",
+      "privacy.p": "No server, no tracking. The only network request is the weather one, once a day, and only if you turn it on.",
+      "privacy.link": "Read the policy",
+      "footer.left": "Whale Drop — a hydration app for Android.", "footer.privacy": "Privacy", "footer.contact": "Contact",
+      "title": "Whale Drop — Water reminder"
+    },
+    de: {
+      "meta.description": "Whale Drop erinnert dich ans Trinken und zählt dein Wasser über den Tag. Achte auf deine Flüssigkeitszufuhr, Schluck für Schluck.",
+      "hero.title": "Achte auf deine Flüssigkeitszufuhr, <span>Schluck für Schluck</span>.",
+      "hero.lead": "Whale Drop erinnert dich ans Trinken und zählt, was du getrunken hast. Ein Ziel, berechnet für dich, das sich an Hitze, Sport und dein Essen anpasst.",
+      "hero.badgeAlt": "Jetzt bei Google Play", "hero.scroll": "Scrollen ↓",
+      "band.1": "Tipps zum Eintragen", "band.2": "Getränke", "band.3": "Sprachen", "band.4": "Ziel nach Maß",
+      "features.title": "Was sie kann", "features.sub": "Alles, was du brauchst, um mehr zu trinken. Nichts, was du nicht brauchst.",
+      "f1.t": "Erinnerungen, die nicht nerven", "f1.p": "Ein Hinweis in regelmäßigen Abständen, mit Ruhezeiten und Schnelltasten zum Eintragen, ohne die App zu öffnen.",
+      "f2.t": "Eintragen mit zwei Tipps", "f2.p": "Favoriten mit deinem Glas oder deiner Flasche, oder der geführte Modus: Getränk, Behälter, bestätigen.",
+      "f3.t": "Ein Ziel, berechnet für dich", "f3.p": "Aus Geschlecht, Alter, Größe, Gewicht, Lebensstil und Ernährung. Es steigt an heißen Tagen, bei Sport und wenn du weniger Obst und Gemüse isst.",
+      "f4.t": "Nicht nur Wasser", "f4.p": "Tee, Kaffee, Milch, Saft, Softdrinks und Alkohol, jedes mit seinem echten Gewicht für die Hydration. Oder nur Wasser, wenn du magst.",
+      "f5.t": "Statistiken und Serien", "f5.p": "Tag, Woche und Monat, Aufteilung nach Getränk, Tage in Folge am Ziel und Abzeichen zum Freischalten.",
+      "f6.t": "Widget auf dem Homescreen", "f6.p": "Der Ring des Tages immer im Blick, ohne die App zu öffnen. Fünf Sprachen, helles und dunkles Design, ml oder oz.",
+      "shots.title": "Bildschirme", "shots.sub": "Die App, wie sie wirklich ist, in deiner Sprache.",
+      "shots.c1": "Willkommen", "shots.c2": "Dein Tag", "shots.c3": "Statistiken", "shots.c4": "Ans Wetter anpassen", "shots.c5": "Erinnerungen", "shots.c6": "Eintragen in drei Schritten",
+      "gallery.title": "So sieht sie aus", "gallery.sub": "Die Erinnerung, der Tag, der Zähler.", "gallery.c2": "Erreicht dich auch im Fitnessstudio.", "gallery.c3": "Whale Drop, dein Trainingspartner.",
+      "privacy.t": "Deine Daten bleiben auf dem Telefon",
+      "privacy.p": "Kein Server, kein Tracking. Die einzige Netzwerkanfrage ist die Wetterabfrage, einmal am Tag, und nur wenn du sie einschaltest.",
+      "privacy.link": "Erklärung lesen",
+      "footer.left": "Whale Drop — Trink-App für Android.", "footer.privacy": "Datenschutz", "footer.contact": "Kontakt",
+      "title": "Whale Drop — Trinkerinnerung"
+    },
+    fr: {
+      "meta.description": "Whale Drop te rappelle de boire et compte ton eau au fil de la journée. Prends soin de ton hydratation, une gorgée à la fois.",
+      "hero.title": "Prends soin de ton hydratation, <span>une gorgée à la fois</span>.",
+      "hero.lead": "Whale Drop te rappelle de boire et compte ce que tu as bu. Un objectif calculé pour toi, qui s'adapte à la chaleur, au sport et à ce que tu manges.",
+      "hero.badgeAlt": "Disponible sur Google Play", "hero.scroll": "Défiler ↓",
+      "band.1": "touches pour enregistrer", "band.2": "boissons", "band.3": "langues", "band.4": "objectif sur mesure",
+      "features.title": "Ce qu'elle fait", "features.sub": "Tout ce qu'il faut pour boire plus, rien de superflu.",
+      "f1.t": "Des rappels qui ne dérangent pas", "f1.p": "Un rappel à intervalles réguliers, avec plage silencieuse et boutons rapides pour enregistrer sans ouvrir l'app.",
+      "f2.t": "Enregistrer en deux touches", "f2.p": "Des favoris avec ton verre ou ta gourde, ou le mode guidé : boisson, contenant, confirmation.",
+      "f3.t": "Un objectif calculé pour toi", "f3.p": "À partir du sexe, de l'âge, de la taille, du poids, du mode de vie et de l'alimentation. Il monte les jours de chaleur, de sport et quand tu manges moins de fruits et légumes.",
+      "f4.t": "Pas seulement de l'eau", "f4.p": "Thé, café, lait, jus, sodas et alcool, chacun avec son vrai poids sur l'hydratation. Ou seulement de l'eau, si tu préfères.",
+      "f5.t": "Statistiques et séries", "f5.p": "Jour, semaine et mois, répartition par boisson, jours d'affilée à l'objectif et badges à débloquer.",
+      "f6.t": "Widget sur l'écran d'accueil", "f6.p": "L'anneau du jour toujours sous les yeux, sans ouvrir l'app. Cinq langues, thème clair et sombre, ml ou oz.",
+      "shots.title": "Écrans", "shots.sub": "L'app telle qu'elle est, dans ta langue.",
+      "shots.c1": "Bienvenue", "shots.c2": "Ta journée", "shots.c3": "Statistiques", "shots.c4": "Adapter à la météo", "shots.c5": "Rappels", "shots.c6": "Enregistrer en trois étapes",
+      "gallery.title": "À quoi elle ressemble", "gallery.sub": "Le rappel, la journée, le compteur.", "gallery.c2": "Il te suit jusqu'à la salle.", "gallery.c3": "Whale Drop, ta partenaire d'entraînement.",
+      "privacy.t": "Tes données restent sur ton téléphone",
+      "privacy.p": "Aucun serveur, aucun suivi. La seule requête réseau est celle de la météo, une fois par jour, et seulement si tu l'actives.",
+      "privacy.link": "Lire la politique",
+      "footer.left": "Whale Drop — application d'hydratation pour Android.", "footer.privacy": "Confidentialité", "footer.contact": "Contact",
+      "title": "Whale Drop — Rappel d'eau"
+    },
+    es: {
+      "meta.description": "Whale Drop te recuerda beber y lleva la cuenta del agua durante el día. Cuida tu hidratación, un sorbo a la vez.",
+      "hero.title": "Cuida tu hidratación, <span>un sorbo a la vez</span>.",
+      "hero.lead": "Whale Drop te recuerda beber y lleva la cuenta de lo que has bebido. Un objetivo calculado para ti, que se adapta al calor, al deporte y a lo que comes.",
+      "hero.badgeAlt": "Disponible en Google Play", "hero.scroll": "Desplázate ↓",
+      "band.1": "toques para registrar", "band.2": "bebidas", "band.3": "idiomas", "band.4": "objetivo a medida",
+      "features.title": "Qué hace", "features.sub": "Todo lo necesario para beber más, nada de lo que sobra.",
+      "f1.t": "Recordatorios que no molestan", "f1.p": "Un aviso a intervalos regulares, con franja silenciosa y botones rápidos para registrar sin abrir la app.",
+      "f2.t": "Registrar en dos toques", "f2.p": "Favoritos con tu vaso o tu botella, o el modo guiado: bebida, recipiente, confirmar.",
+      "f3.t": "Un objetivo calculado para ti", "f3.p": "A partir de sexo, edad, altura, peso, estilo de vida y dieta. Sube en los días de calor, de deporte y cuando comes menos fruta y verdura.",
+      "f4.t": "No solo agua", "f4.p": "Té, café, leche, zumos, refrescos y alcohol, cada uno con su peso real en la hidratación. O solo agua, si lo prefieres.",
+      "f5.t": "Estadísticas y rachas", "f5.p": "Día, semana y mes, reparto por bebida, días seguidos con el objetivo cumplido e insignias por desbloquear.",
+      "f6.t": "Widget en la pantalla de inicio", "f6.p": "El anillo del día siempre a la vista, sin abrir la app. Cinco idiomas, tema claro y oscuro, ml u onzas.",
+      "shots.title": "Pantallas", "shots.sub": "La app tal como es, en tu idioma.",
+      "shots.c1": "Bienvenida", "shots.c2": "Tu día", "shots.c3": "Estadísticas", "shots.c4": "Adaptar al tiempo", "shots.c5": "Recordatorios", "shots.c6": "Registrar en tres pasos",
+      "gallery.title": "Cómo es", "gallery.sub": "El recordatorio, el día, el contador.", "gallery.c2": "Te alcanza también en el gimnasio.", "gallery.c3": "Whale Drop, tu compañera de entrenamiento.",
+      "privacy.t": "Tus datos se quedan en el teléfono",
+      "privacy.p": "Sin servidor, sin rastreo. La única petición de red es la del tiempo, una vez al día, y solo si la activas tú.",
+      "privacy.link": "Leer la política",
+      "footer.left": "Whale Drop — app de hidratación para Android.", "footer.privacy": "Privacidad", "footer.contact": "Contacto",
+      "title": "Whale Drop — Recordatorio de agua"
+    }
+  };
+
+  (function () {
+    var supported = ['it', 'en', 'de', 'fr', 'es'];
+    function apply(lang) {
+      var t = I18N[lang];
+      document.documentElement.lang = lang;
+      document.title = t.title;
+      var nodes = document.querySelectorAll('[data-i18n]');
+      for (var i = 0; i < nodes.length; i++) {
+        var key = nodes[i].getAttribute('data-i18n');
+        if (t[key] !== undefined) nodes[i].innerHTML = t[key];
+      }
+      var meta = document.querySelector('[data-i18n-content]');
+      if (meta) meta.setAttribute('content', t[meta.getAttribute('data-i18n-content')]);
+      var ids = [['play-badge', 'play-link']];
+      for (var b = 0; b < ids.length; b++) {
+        var badge = document.getElementById(ids[b][0]);
+        badge.src = '/img/play-' + lang + '.svg';
+        badge.alt = t['hero.badgeAlt'];
+        document.getElementById(ids[b][1]).href = 'https://play.google.com/store/apps/details?id=com.simofano.whaledrop&hl=' + lang;
+      }
+      var shots = document.querySelectorAll('[data-shot]');
+      for (var q = 0; q < shots.length; q++) shots[q].src = '/img/shots/' + lang + '/' + shots[q].getAttribute('data-shot') + '.png';
+      var links = document.querySelectorAll('nav.lang a');
+      for (var j = 0; j < links.length; j++) {
+        if (links[j].getAttribute('data-pick') === lang) links[j].setAttribute('aria-current', 'true');
+        else links[j].removeAttribute('aria-current');
+      }
+    }
+    var param = new URLSearchParams(location.search).get('lang');
+    var browser = (navigator.language || 'en').slice(0, 2).toLowerCase();
+    var lang = supported.indexOf(param) >= 0 ? param : (supported.indexOf(browser) >= 0 ? browser : 'en');
+    apply(lang);
+    var links = document.querySelectorAll('nav.lang a');
+    for (var k = 0; k < links.length; k++) {
+      links[k].addEventListener('click', function (e) {
+        e.preventDefault();
+        var chosen = this.getAttribute('data-pick');
+        apply(chosen);
+        history.replaceState(null, '', '?lang=' + chosen);
+      });
+    }
+  })();
+</script>
+</body>
+</html>
