@@ -1,1 +1,9 @@
 /.idea/workspace.xml
+
+# Generati da tools/build_i18n.py nel workflow di Pages
+/it/
+/en/
+/de/
+/fr/
+/es/
+/sitemap.xml

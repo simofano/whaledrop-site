@@ -6,6 +6,12 @@
 <title>Whale Drop — Privacy</title>
 <meta name="description" content="Informativa sulla privacy di Whale Drop, app Android per bere più acqua. Nessun server, nessun account, nessun tracciamento.">
 <link rel="canonical" href="https://whaledrop.app/privacy/">
+<link rel="alternate" hreflang="it" href="https://whaledrop.app/it/privacy/">
+<link rel="alternate" hreflang="en" href="https://whaledrop.app/en/privacy/">
+<link rel="alternate" hreflang="de" href="https://whaledrop.app/de/privacy/">
+<link rel="alternate" hreflang="fr" href="https://whaledrop.app/fr/privacy/">
+<link rel="alternate" hreflang="es" href="https://whaledrop.app/es/privacy/">
+<link rel="alternate" hreflang="x-default" href="https://whaledrop.app/privacy/">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
 <link rel="icon" href="/img/icon-192.png" type="image/png" sizes="192x192">
@@ -54,15 +60,15 @@
 <main>
   <nav class="top"><a href="/">&larr; Whale Drop</a></nav>
   <nav class="lang" aria-label="Lingua / Language">
-    <a href="?lang=it" data-pick="it" title="Italiano" aria-current="true"><img src="/img/flags/it.svg" alt="Italiano"></a>
-    <a href="?lang=en" data-pick="en" title="English"><img src="/img/flags/en.svg" alt="English"></a>
-    <a href="?lang=de" data-pick="de" title="Deutsch"><img src="/img/flags/de.svg" alt="Deutsch"></a>
-    <a href="?lang=fr" data-pick="fr" title="Français"><img src="/img/flags/fr.svg" alt="Français"></a>
-    <a href="?lang=es" data-pick="es" title="Español"><img src="/img/flags/es.svg" alt="Español"></a>
+    <a href="/it/privacy/" hreflang="it" data-pick="it" title="Italiano" aria-current="true"><img src="/img/flags/it.svg" alt="Italiano"></a>
+    <a href="/en/privacy/" hreflang="en" data-pick="en" title="English"><img src="/img/flags/en.svg" alt="English"></a>
+    <a href="/de/privacy/" hreflang="de" data-pick="de" title="Deutsch"><img src="/img/flags/de.svg" alt="Deutsch"></a>
+    <a href="/fr/privacy/" hreflang="fr" data-pick="fr" title="Français"><img src="/img/flags/fr.svg" alt="Français"></a>
+    <a href="/es/privacy/" hreflang="es" data-pick="es" title="Español"><img src="/img/flags/es.svg" alt="Español"></a>
   </nav>
 
   <!-- ===================================================== ITALIANO -->
-  <section data-lang="it" lang="it">
+  <section data-lang="it" lang="it" data-title="Whale Drop — Privacy" data-description="Informativa sulla privacy di Whale Drop, app Android per bere più acqua. Nessun server, nessun account, nessun tracciamento.">
     <h1>Informativa sulla privacy — Whale Drop</h1>
     <p class="updated">Ultimo aggiornamento: 31 luglio 2026</p>
 
@@ -150,7 +156,7 @@
   </section>
 
   <!-- ===================================================== ENGLISH -->
-  <section data-lang="en" lang="en">
+  <section data-lang="en" lang="en" data-title="Whale Drop — Privacy" data-description="Privacy policy of Whale Drop, the Android app that helps you drink more water. No servers, no account, no tracking.">
     <h1>Privacy Policy — Whale Drop</h1>
     <p class="updated">Last updated: 31 July 2026</p>
 
@@ -235,7 +241,7 @@
   </section>
 
   <!-- ===================================================== DEUTSCH -->
-  <section data-lang="de" lang="de">
+  <section data-lang="de" lang="de" data-title="Whale Drop — Datenschutz" data-description="Datenschutzerklärung von Whale Drop, der Android-App, die dir hilft, mehr Wasser zu trinken. Keine Server, kein Konto, kein Tracking.">
     <h1>Datenschutzerklärung — Whale Drop</h1>
     <p class="updated">Zuletzt aktualisiert: 31. Juli 2026</p>
 
@@ -323,7 +329,7 @@
   </section>
 
   <!-- ===================================================== FRANÇAIS -->
-  <section data-lang="fr" lang="fr">
+  <section data-lang="fr" lang="fr" data-title="Whale Drop — Confidentialité" data-description="Politique de confidentialité de Whale Drop, l'application Android pour boire plus d'eau. Aucun serveur, aucun compte, aucun suivi.">
     <h1>Politique de confidentialité — Whale Drop</h1>
     <p class="updated">Dernière mise à jour : 31 juillet 2026</p>
 
@@ -411,7 +417,7 @@
   </section>
 
   <!-- ===================================================== ESPAÑOL -->
-  <section data-lang="es" lang="es">
+  <section data-lang="es" lang="es" data-title="Whale Drop — Privacidad" data-description="Política de privacidad de Whale Drop, la app de Android para beber más agua. Sin servidores, sin cuenta, sin rastreo.">
     <h1>Política de privacidad — Whale Drop</h1>
     <p class="updated">Última actualización: 31 de julio de 2026</p>
 
@@ -501,35 +507,27 @@
 </main>
 
 <script>
-  // Lingua: ?lang=xx nell'URL vince; altrimenti quella del browser se è fra le cinque; altrimenti
-  // inglese. Senza JavaScript la classe "nojs" non viene tolta e restano visibili tutte le sezioni.
+  // Pagina x-default (è l'URL dato alla Play Console): i vecchi link ?lang=xx vanno alla pagina
+  // statica /xx/privacy/ generata da tools/build_i18n.py; senza parametro mostra la lingua del
+  // browser se è fra le cinque, altrimenti l'inglese. Titolo e description vengono da data-title e
+  // data-description della sezione. Senza JavaScript la classe "nojs" non viene tolta e restano
+  // visibili tutte le sezioni.
   (function () {
     var supported = ['it', 'en', 'de', 'fr', 'es'];
-    var html = document.documentElement;
-    var titles = { it: 'Whale Drop — Privacy', en: 'Whale Drop — Privacy', de: 'Whale Drop — Datenschutz', fr: 'Whale Drop — Confidentialité', es: 'Whale Drop — Privacidad' };
-    function pick(lang) {
-      html.setAttribute('data-active', lang);
-      html.setAttribute('lang', lang);
-      document.title = titles[lang];
-      var links = document.querySelectorAll('nav.lang a');
-      for (var i = 0; i < links.length; i++) {
-        var l = links[i];
-        if (l.getAttribute('data-pick') === lang) l.setAttribute('aria-current', 'true');
-        else l.removeAttribute('aria-current');
-      }
-    }
     var param = new URLSearchParams(location.search).get('lang');
+    if (supported.indexOf(param) >= 0) { location.replace('/' + param + '/privacy/' + location.hash); return; }
     var browser = (navigator.language || 'en').slice(0, 2).toLowerCase();
-    var lang = supported.indexOf(param) >= 0 ? param : (supported.indexOf(browser) >= 0 ? browser : 'en');
-    pick(lang);
+    var lang = supported.indexOf(browser) >= 0 ? browser : 'en';
+    var html = document.documentElement;
+    var section = document.querySelector('section[data-lang="' + lang + '"]');
+    html.setAttribute('data-active', lang);
+    html.setAttribute('lang', lang);
+    document.title = section.getAttribute('data-title');
+    document.querySelector('meta[name="description"]').setAttribute('content', section.getAttribute('data-description'));
     var links = document.querySelectorAll('nav.lang a');
     for (var i = 0; i < links.length; i++) {
-      links[i].addEventListener('click', function (e) {
-        e.preventDefault();
-        var chosen = this.getAttribute('data-pick');
-        pick(chosen);
-        history.replaceState(null, '', '?lang=' + chosen);
-      });
+      if (links[i].getAttribute('data-pick') === lang) links[i].setAttribute('aria-current', 'true');
+      else links[i].removeAttribute('aria-current');
     }
   })();
 </script>

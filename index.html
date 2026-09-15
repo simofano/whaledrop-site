@@ -6,6 +6,12 @@
 <title>Whale Drop</title>
 <meta name="description" data-i18n-content="meta.description" content="Whale Drop ti ricorda di bere e tiene il conto dell'acqua durante la giornata. Prenditi cura della tua idratazione, un sorso alla volta.">
 <link rel="canonical" href="https://whaledrop.app/">
+<link rel="alternate" hreflang="it" href="https://whaledrop.app/it/">
+<link rel="alternate" hreflang="en" href="https://whaledrop.app/en/">
+<link rel="alternate" hreflang="de" href="https://whaledrop.app/de/">
+<link rel="alternate" hreflang="fr" href="https://whaledrop.app/fr/">
+<link rel="alternate" hreflang="es" href="https://whaledrop.app/es/">
+<link rel="alternate" hreflang="x-default" href="https://whaledrop.app/">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
 <link rel="icon" href="/img/icon-192.png" type="image/png" sizes="192x192">
@@ -112,11 +118,11 @@
     <div class="wrap">
       <a class="brand" href="/"><img src="/img/logo.svg" alt=""> Whale Drop</a>
       <nav class="lang" aria-label="Lingua / Language">
-        <a href="?lang=it" data-pick="it" title="Italiano" aria-current="true"><img src="/img/flags/it.svg" alt="Italiano"></a>
-        <a href="?lang=en" data-pick="en" title="English"><img src="/img/flags/en.svg" alt="English"></a>
-        <a href="?lang=de" data-pick="de" title="Deutsch"><img src="/img/flags/de.svg" alt="Deutsch"></a>
-        <a href="?lang=fr" data-pick="fr" title="Français"><img src="/img/flags/fr.svg" alt="Français"></a>
-        <a href="?lang=es" data-pick="es" title="Español"><img src="/img/flags/es.svg" alt="Español"></a>
+        <a href="/it/" hreflang="it" data-pick="it" title="Italiano" aria-current="true"><img src="/img/flags/it.svg" alt="Italiano"></a>
+        <a href="/en/" hreflang="en" data-pick="en" title="English"><img src="/img/flags/en.svg" alt="English"></a>
+        <a href="/de/" hreflang="de" data-pick="de" title="Deutsch"><img src="/img/flags/de.svg" alt="Deutsch"></a>
+        <a href="/fr/" hreflang="fr" data-pick="fr" title="Français"><img src="/img/flags/fr.svg" alt="Français"></a>
+        <a href="/es/" hreflang="es" data-pick="es" title="Español"><img src="/img/flags/es.svg" alt="Español"></a>
       </nav>
     </div>
   </header>
@@ -349,19 +355,12 @@
         else links[j].removeAttribute('aria-current');
       }
     }
+    // Questa è la pagina x-default: le bandierine portano alle pagine statiche /xx/ generate da
+    // tools/build_i18n.py, e i vecchi link ?lang=xx vengono girati lì.
     var param = new URLSearchParams(location.search).get('lang');
+    if (supported.indexOf(param) >= 0) { location.replace('/' + param + '/' + location.hash); return; }
     var browser = (navigator.language || 'en').slice(0, 2).toLowerCase();
-    var lang = supported.indexOf(param) >= 0 ? param : (supported.indexOf(browser) >= 0 ? browser : 'en');
-    apply(lang);
-    var links = document.querySelectorAll('nav.lang a');
-    for (var k = 0; k < links.length; k++) {
-      links[k].addEventListener('click', function (e) {
-        e.preventDefault();
-        var chosen = this.getAttribute('data-pick');
-        apply(chosen);
-        history.replaceState(null, '', '?lang=' + chosen);
-      });
-    }
+    apply(supported.indexOf(browser) >= 0 ? browser : 'en');
   })();
 </script>
 </body>
