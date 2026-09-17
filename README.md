@@ -6,8 +6,11 @@ helps you drink more water. Static pages served by GitHub Pages on the `whaledro
 
 - `index.html`: the landing page in five languages (full-screen video, numbers band, screens,
   gallery, privacy). The Italian text lives in the HTML; the other languages are in the `I18N`
-  dictionary at the bottom of the page, applied through `data-i18n`. It is the `x-default`
-  page: it shows the browser's language, and old `?lang=xx` links redirect to `/xx/`.
+  dictionary at the bottom of the page, applied through `data-i18n` by the generator. It is the
+  `x-default` page and only routes: a script in its head sends visitors straight to `/xx/` for
+  their browser's language (old `?lang=xx` links included), so it does not compete with `/en/`
+  as a duplicate on Google. Without JavaScript the Italian page below stays visible. Being a
+  redirect, it is the one page left out of the sitemap.
 - `privacy/index.html`: the privacy policy in Italian, English, German, French and Spanish, one
   `<section data-lang>` per language with its `data-title` and `data-description`. It is the
   `x-default` page (`?lang=xx` redirects to `/xx/privacy/`) and the URL given to the Play
@@ -21,6 +24,10 @@ helps you drink more water. Static pages served by GitHub Pages on the `whaledro
 - `img/`: `promo.mp4` (muted, 960 px, looping) with `promo-poster.jpg`, the two gym photos, the
   localized Google Play badges as SVG, the flags, and `logo.svg` derived from the app icon's
   vector drawable.
+- `img/qr-play.svg`: QR code for the Play Store listing, shown in the hero only on wide screens
+  with a mouse (scanning your own phone screen makes no sense). Regenerate it only if the store
+  URL changes: `pip install segno`, then
+  `segno.make(url, error='m').save('img/qr-play.svg', scale=10, border=2, dark='#0F2238', light='#FFFFFF')`.
 - `img/shots/<lang>/1..6.png`: the six store screenshots scaled to 540 px, shown in the language
   picked by the switcher (1 welcome, 2 your day, 3 stats, 4 weather, 5 reminders, 6 third step
   of the guided Drink flow). Source: `store_screenshots/` in the app repository.

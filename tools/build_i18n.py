@@ -72,8 +72,10 @@ def build_landing():
     i18n = json.loads(re.sub(r"(?m)^(\s*)(\w+): \{", r'\1"\2": {', m.group(1)))
     if set(LANGS) - set(i18n):
         fail(f"index.html: I18N non ha {sorted(set(LANGS) - set(i18n))}")
-    # Le pagine generate sono statiche: niente script di scelta della lingua.
+    # Le pagine generate sono statiche: niente dizionario e, soprattutto, niente smistamento della
+    # radice, che qui rimanderebbe la pagina a se stessa in un ciclo infinito.
     page = src[:m.start()] + "\n" + src[m.end():]
+    page = sub(r'\n<script id="lang-redirect">.*?</script>\n', "\n", page, flags=re.S)
     keys = re.findall(r'data-i18n="([^"]+)"', page)
 
     for lang in LANGS:
@@ -139,9 +141,13 @@ def build_privacy():
 def build_sitemap():
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
-    for path in ("", "privacy/"):
+    # La home smista e non si elenca: nella sitemap non vanno indirizzi che reindirizzano. La
+    # privacy della radice invece mostra il testo e resta l'indirizzo dato alla Play Console.
+    for path, root_listed in (("", False), ("privacy/", True)):
         alternates = [(code, f"{SITE}/{code}/{path}") for code in LANGS] + [("x-default", f"{SITE}/{path}")]
-        for _, loc in alternates:
+        for code, loc in alternates:
+            if code == "x-default" and not root_listed:
+                continue
             lines.append("  <url>")
             lines.append(f"    <loc>{loc}</loc>")
             for code, href in alternates:

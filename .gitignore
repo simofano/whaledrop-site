@@ -7,3 +7,6 @@
 /fr/
 /es/
 /sitemap.xml
+
+# Config locale per l'anteprima nel browser
+/.claude/
