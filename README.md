@@ -15,8 +15,13 @@ helps you drink more water. Static pages served by GitHub Pages on the `whaledro
   `<section data-lang>` per language with its `data-title` and `data-description`. It is the
   `x-default` page (`?lang=xx` redirects to `/xx/privacy/`) and the URL given to the Play
   Console: `https://whaledrop.app/privacy/`.
+- `delete-data/index.html`: how to delete your data, same shape as the privacy page. It says
+  that nothing is kept on servers and gives the steps to delete everything from the phone. It
+  is the URL given to the Play Console for the data deletion question:
+  `https://whaledrop.app/delete-data/`. The steps must match what the app really offers: when
+  the app gets its own "delete data" setting, add it as the first step in all five languages.
 - `tools/build_i18n.py`: generates the static per-language pages `/it/`, `/en/`, `/de/`, `/fr/`,
-  `/es/` and `/<lang>/privacy/` from the two pages above (text, `lang`, title, description and
+  `/es/`, `/<lang>/privacy/` and `/<lang>/delete-data/` from the pages above (text, `lang`, title, description and
   canonical already in the HTML, `hreflang` links for Google), plus `sitemap.xml`. The Pages
   workflow runs it before uploading, so the outputs are in `.gitignore` and never committed;
   run `python tools/build_i18n.py` locally to preview them. It stops with an error if a source

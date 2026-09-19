@@ -1,12 +1,14 @@
-"""Genera una pagina statica per lingua a partire dalle due pagine della radice.
+"""Genera una pagina statica per lingua a partire dalle pagine della radice.
 
 Le pagine della radice restano la fonte e fanno da x-default:
 - index.html: italiano nell'HTML, le altre lingue nel dizionario I18N in fondo;
-- privacy/index.html: una <section data-lang> per lingua, con data-title e data-description.
+- privacy/index.html e delete-data/index.html: una <section data-lang> per lingua, con
+  data-title e data-description (vedi SECTIONED).
 
-Scrive /<lingua>/index.html, /<lingua>/privacy/index.html e sitemap.xml, ciascuna pagina con la
-sua lingua, il suo titolo, la sua description e il suo canonical già nell'HTML. Gira nel workflow
-di Pages prima dell'upload; i file generati sono in .gitignore.
+Scrive /<lingua>/index.html, /<lingua>/privacy/index.html, /<lingua>/delete-data/index.html e
+sitemap.xml, ciascuna pagina con la sua lingua, il suo titolo, la sua description e il suo
+canonical già nell'HTML. Gira nel workflow di Pages prima dell'upload; i file generati sono in
+.gitignore.
 
 Uso: python3 tools/build_i18n.py
 """
@@ -18,6 +20,8 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://whaledrop.app"
 LANGS = ["it", "en", "de", "fr", "es"]
+# Le pagine di solo testo, tutte con la stessa forma: una <section data-lang> per lingua.
+SECTIONED = ["privacy/", "delete-data/"]
 
 
 def fail(msg):
@@ -109,13 +113,14 @@ def build_landing():
         write(f"{lang}/index.html", out)
 
 
-def build_privacy():
-    src = (ROOT / "privacy" / "index.html").read_text(encoding="utf-8")
-    check_hreflang(src, "privacy/index.html", "privacy/")
+def build_sectioned(path):
+    name = path + "index.html"
+    src = (ROOT / name).read_text(encoding="utf-8")
+    check_hreflang(src, name, path)
     sections = {m.group(1): (m.group(2), m.group(3)) for m in re.finditer(
         r'<section data-lang="(\w+)" lang="\1" data-title="([^"]*)" data-description="([^"]*)">', src)}
     if sorted(sections) != sorted(LANGS):
-        fail(f"privacy/index.html: sezioni trovate {sorted(sections)}, attese {sorted(LANGS)}")
+        fail(f"{name}: sezioni trovate {sorted(sections)}, attese {sorted(LANGS)}")
 
     for lang in LANGS:
         title, description = sections[lang]
@@ -125,25 +130,29 @@ def build_privacy():
         out = sub(r"<title>[^<]*</title>", f"<title>{title}</title>", out)
         out = sub(r'<meta name="description" content="[^"]*">',
                   f'<meta name="description" content="{description}">', out)
-        out = sub(re.escape(f'<link rel="canonical" href="{SITE}/privacy/">'),
-                  f'<link rel="canonical" href="{SITE}/{lang}/privacy/">', out)
+        out = sub(re.escape(f'<link rel="canonical" href="{SITE}/{path}">'),
+                  f'<link rel="canonical" href="{SITE}/{lang}/{path}">', out)
         out = sub(re.escape('<nav class="top"><a href="/">'), f'<nav class="top"><a href="/{lang}/">', out)
-        out = lang_nav(out, lang, "privacy/")
+        out = lang_nav(out, lang, path)
+        # I rimandi tra queste pagine restano nella lingua in cui si sta leggendo.
+        for other in SECTIONED:
+            out = out.replace(f'href="/{other}"', f'href="/{lang}/{other}"')
         # Resta solo la sezione di questa lingua (con il suo commento di intestazione).
         out = sub(r'\n  <!-- =+ \w+ -->\n  <section data-lang="(?!' + lang + r'")\w+".*?</section>\n', "\n", out,
                   expect=len(LANGS) - 1, flags=re.S)
         out = sub(r"\n<script>.*?</script>\n<script>.*?</script>\n", "\n", out, flags=re.S)
         if "?lang=" in out:
-            fail(f"{lang}/privacy/index.html: è rimasto un link ?lang=")
-        write(f"{lang}/privacy/index.html", out)
+            fail(f"{lang}/{name}: è rimasto un link ?lang=")
+        write(f"{lang}/{name}", out)
 
 
 def build_sitemap():
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">']
-    # La home smista e non si elenca: nella sitemap non vanno indirizzi che reindirizzano. La
-    # privacy della radice invece mostra il testo e resta l'indirizzo dato alla Play Console.
-    for path, root_listed in (("", False), ("privacy/", True)):
+    # La home smista e non si elenca: nella sitemap non vanno indirizzi che reindirizzano. Le
+    # pagine di testo della radice invece mostrano il testo e restano gli indirizzi dati alla
+    # Play Console.
+    for path, root_listed in [("", False)] + [(p, True) for p in SECTIONED]:
         alternates = [(code, f"{SITE}/{code}/{path}") for code in LANGS] + [("x-default", f"{SITE}/{path}")]
         for code, loc in alternates:
             if code == "x-default" and not root_listed:
@@ -159,6 +168,7 @@ def build_sitemap():
 
 if __name__ == "__main__":
     build_landing()
-    build_privacy()
+    for page in SECTIONED:
+        build_sectioned(page)
     build_sitemap()
-    print(f"build_i18n: {len(LANGS) * 2} pagine e sitemap.xml generate")
+    print(f"build_i18n: {len(LANGS) * (1 + len(SECTIONED))} pagine e sitemap.xml generate")

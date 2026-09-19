@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="it" data-active="it" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whale Drop — Eliminare i tuoi dati</title>
+<meta name="description" content="Come eliminare i dati di Whale Drop, app Android per bere più acqua. Nessun dato è conservato su server: tutto sta sul tuo telefono e lo cancelli tu.">
+<link rel="canonical" href="https://whaledrop.app/delete-data/">
+<link rel="alternate" hreflang="it" href="https://whaledrop.app/it/delete-data/">
+<link rel="alternate" hreflang="en" href="https://whaledrop.app/en/delete-data/">
+<link rel="alternate" hreflang="de" href="https://whaledrop.app/de/delete-data/">
+<link rel="alternate" hreflang="fr" href="https://whaledrop.app/fr/delete-data/">
+<link rel="alternate" hreflang="es" href="https://whaledrop.app/es/delete-data/">
+<link rel="alternate" hreflang="x-default" href="https://whaledrop.app/delete-data/">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/img/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+  :root { --ink:#1F3550; --muted:#7B90A8; --accent:#3D96E8; --line:#D9E8F6; --bg:#F2F5F9; --card:#fff; }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#EAF2FA; --muted:#93A9C0; --accent:#3D96E8; --line:#2A415A; --bg:#0E1B29; --card:#16283A; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.7;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  h1 { font-size: 1.9rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1.25rem; margin: 2.5rem 0 .5rem; }
+  .updated { color: var(--muted); margin: 0 0 2rem; font-size: .95rem; }
+  .lead { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1rem 1.25rem; }
+  a { color: var(--accent); }
+  li { margin: .35rem 0; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .9rem; }
+  nav.top { margin: 0 0 1rem; font-size: .95rem; }
+  nav.top a { text-decoration: none; font-weight: 600; }
+  nav.lang { display: flex; flex-wrap: wrap; gap: .35rem; }
+  nav.lang a { display: block; line-height: 0; border: 2px solid transparent; border-radius: 7px; padding: 1px; opacity: .75; transition: opacity .15s, transform .15s; }
+  nav.lang a:hover { opacity: 1; transform: translateY(-1px); }
+  nav.lang a[aria-current="true"] { opacity: 1; border-color: var(--accent); }
+  nav.lang img { width: 28px; height: 20px; border-radius: 4px; object-fit: cover; display: block; }
+  /* Una sezione per lingua: visibile solo quella attiva. Senza JavaScript restano tutte visibili. */
+  section[data-lang] { display: none; }
+  html[data-active="it"] section[data-lang="it"],
+  html[data-active="en"] section[data-lang="en"],
+  html[data-active="de"] section[data-lang="de"],
+  html[data-active="fr"] section[data-lang="fr"],
+  html[data-active="es"] section[data-lang="es"] { display: block; }
+  html.nojs section[data-lang] { display: block; }
+  html.nojs section[data-lang] + section[data-lang] { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 2rem; }
+</style>
+</head>
+<body>
+<main>
+  <nav class="top"><a href="/">&larr; Whale Drop</a></nav>
+  <nav class="lang" aria-label="Lingua / Language">
+    <a href="/it/delete-data/" hreflang="it" data-pick="it" title="Italiano" aria-current="true"><img src="/img/flags/it.svg" alt="Italiano"></a>
+    <a href="/en/delete-data/" hreflang="en" data-pick="en" title="English"><img src="/img/flags/en.svg" alt="English"></a>
+    <a href="/de/delete-data/" hreflang="de" data-pick="de" title="Deutsch"><img src="/img/flags/de.svg" alt="Deutsch"></a>
+    <a href="/fr/delete-data/" hreflang="fr" data-pick="fr" title="Français"><img src="/img/flags/fr.svg" alt="Français"></a>
+    <a href="/es/delete-data/" hreflang="es" data-pick="es" title="Español"><img src="/img/flags/es.svg" alt="Español"></a>
+  </nav>
+
+  <!-- Quando l'app avrà la voce "Elimina dati" nelle Impostazioni (vedi docs/roadmap.md nel
+       repository dell'app), va aggiunta come primo passo dell'elenco in tutte e cinque le
+       lingue. Finché non c'è non va citata: chi segue i passi deve trovare quello che legge. -->
+
+  <!-- ===================================================== ITALIANO -->
+  <section data-lang="it" lang="it" data-title="Whale Drop — Eliminare i tuoi dati" data-description="Come eliminare i dati di Whale Drop, app Android per bere più acqua. Nessun dato è conservato su server: tutto sta sul tuo telefono e lo cancelli tu.">
+    <h1>Eliminare i tuoi dati — Whale Drop</h1>
+    <p class="updated">Ultimo aggiornamento: 19 settembre 2026</p>
+
+    <p class="lead">
+      <strong>Whale Drop non conserva nessun tuo dato su server.</strong> L'app non ha server e non ha
+      account: tutto quello che registri sta solo sul tuo telefono, e lo elimini tu quando vuoi,
+      senza doverlo chiedere a nessuno.
+    </p>
+
+    <h2>Come eliminare i dati</h2>
+    <p>Dal tuo telefono Android, in uno di questi due modi:</p>
+    <ol>
+      <li><strong>Cancellare i dati dell'app.</strong> Apri le Impostazioni di Android, vai su App,
+          scegli Whale Drop, poi Spazio di archiviazione e tocca "Cancella dati" (su alcuni telefoni
+          "Cancella spazio di archiviazione"). L'app resta installata e riparte da zero.</li>
+      <li><strong>Disinstallare l'app.</strong> Insieme all'app vengono rimossi tutti i suoi dati.</li>
+    </ol>
+    <p>L'eliminazione è immediata e non si può annullare.</p>
+
+    <h2>Quali dati vengono eliminati</h2>
+    <p>Tutti quelli che l'app ha salvato:</p>
+    <ul>
+      <li>le bevute registrate, con quantità, bevanda, data e ora;</li>
+      <li>il profilo usato per calcolare l'obiettivo: sesso, anno di nascita, altezza, peso, livello di
+          attività, gravidanza o allattamento;</li>
+      <li>i preferiti, i traguardi raggiunti e tutte le impostazioni.</li>
+    </ul>
+    <p>Non viene conservato niente, nemmeno in forma anonima.</p>
+
+    <h2>La copia nel backup di Android</h2>
+    <p>
+      Se sul telefono è attivo il backup di sistema, una copia dei dati dell'app sta nel tuo account
+      Google. La gestisce Google, non Whale Drop. Dopo l'eliminazione viene sostituita al backup
+      successivo, di solito entro un giorno. Puoi rimuoverla subito dalle impostazioni di backup del
+      telefono o da Google Drive, nella sezione Backup.
+    </p>
+
+    <h2>Dati conservati da noi</h2>
+    <p>
+      Nessuno, quindi non c'è niente da chiederci di eliminare. L'unica cosa che può uscire dal
+      telefono è la posizione approssimativa, una volta al giorno e solo se attivi "Adatta al meteo":
+      va al servizio Open-Meteo per quella singola richiesta e l'app non la salva. I dettagli sono
+      nell'<a href="/privacy/">informativa sulla privacy</a>.
+    </p>
+
+    <h2>Contatti</h2>
+    <p>Per qualsiasi domanda o richiesta puoi scrivere a: <a href="mailto:info@whaledrop.app">info@whaledrop.app</a></p>
+
+    <footer>Whale Drop — app personale di idratazione per Android.</footer>
+  </section>
+
+  <!-- ===================================================== ENGLISH -->
+  <section data-lang="en" lang="en" data-title="Whale Drop — Delete your data" data-description="How to delete your Whale Drop data. Whale Drop is an Android app that helps you drink more water: no data is kept on servers, everything lives on your phone and you delete it yourself.">
+    <h1>Delete your data — Whale Drop</h1>
+    <p class="updated">Last updated: September 19, 2026</p>
+
+    <p class="lead">
+      <strong>Whale Drop keeps none of your data on servers.</strong> The app has no servers and no
+      accounts: everything you log lives only on your phone, and you can delete it whenever you like,
+      without asking anyone.
+    </p>
+
+    <h2>How to delete your data</h2>
+    <p>From your Android phone, in either of these ways:</p>
+    <ol>
+      <li><strong>Clear the app's data.</strong> Open Android Settings, go to Apps, choose Whale Drop,
+          then Storage, and tap "Clear data" (on some phones "Clear storage"). The app stays
+          installed and starts again from scratch.</li>
+      <li><strong>Uninstall the app.</strong> All of its data is removed together with it.</li>
+    </ol>
+    <p>Deletion is immediate and cannot be undone.</p>
+
+    <h2>What gets deleted</h2>
+    <p>Everything the app has saved:</p>
+    <ul>
+      <li>the drinks you logged, with amount, beverage, date and time;</li>
+      <li>the profile used to work out your goal: sex, year of birth, height, weight, activity level,
+          pregnancy or breastfeeding;</li>
+      <li>your favourites, the milestones you reached and all your settings.</li>
+    </ul>
+    <p>Nothing is kept, not even in anonymous form.</p>
+
+    <h2>The copy in your Android backup</h2>
+    <p>
+      If system backup is turned on for your phone, a copy of the app's data sits in your Google
+      account. It is handled by Google, not by Whale Drop. After you delete your data it is replaced
+      at the next backup, usually within a day. You can remove it right away from your phone's backup
+      settings or from Google Drive, under Backups.
+    </p>
+
+    <h2>Data kept by us</h2>
+    <p>
+      None, so there is nothing to ask us to delete. The only thing that can leave your phone is your
+      approximate location, once a day and only if you turn on "Adjust for weather": it goes to the
+      Open-Meteo service for that single request and the app does not save it. The details are in the
+      <a href="/privacy/">privacy policy</a>.
+    </p>
+
+    <h2>Contact</h2>
+    <p>For any question or request you can write to: <a href="mailto:info@whaledrop.app">info@whaledrop.app</a></p>
+
+    <footer>Whale Drop — a personal hydration app for Android.</footer>
+  </section>
+
+  <!-- ===================================================== DEUTSCH -->
+  <section data-lang="de" lang="de" data-title="Whale Drop — Deine Daten löschen" data-description="So löschst du deine Daten in Whale Drop, der Android-App, die dir hilft, mehr Wasser zu trinken. Es werden keine Daten auf Servern gespeichert: Alles liegt auf deinem Telefon, und du löschst es selbst.">
+    <h1>Deine Daten löschen — Whale Drop</h1>
+    <p class="updated">Zuletzt aktualisiert: 19. September 2026</p>
+
+    <p class="lead">
+      <strong>Whale Drop speichert keine deiner Daten auf Servern.</strong> Die App hat keine Server
+      und keine Konten: Alles, was du einträgst, liegt nur auf deinem Telefon, und du kannst es
+      jederzeit löschen, ohne jemanden fragen zu müssen.
+    </p>
+
+    <h2>So löschst du deine Daten</h2>
+    <p>Auf deinem Android-Telefon, auf einem dieser beiden Wege:</p>
+    <ol>
+      <li><strong>Die Daten der App löschen.</strong> Öffne die Android-Einstellungen, gehe zu Apps,
+          wähle Whale Drop, dann Speicher, und tippe auf „Daten löschen“ (auf manchen Telefonen
+          „Speicherinhalt löschen“). Die App bleibt installiert und startet von vorn.</li>
+      <li><strong>Die App deinstallieren.</strong> Mit der App werden alle ihre Daten entfernt.</li>
+    </ol>
+    <p>Das Löschen geschieht sofort und lässt sich nicht rückgängig machen.</p>
+
+    <h2>Welche Daten gelöscht werden</h2>
+    <p>Alles, was die App gespeichert hat:</p>
+    <ul>
+      <li>die eingetragenen Getränke mit Menge, Getränk, Datum und Uhrzeit;</li>
+      <li>das Profil, aus dem dein Ziel berechnet wird: Geschlecht, Geburtsjahr, Größe, Gewicht,
+          Aktivitätsniveau, Schwangerschaft oder Stillzeit;</li>
+      <li>deine Favoriten, die erreichten Meilensteine und alle Einstellungen.</li>
+    </ul>
+    <p>Es wird nichts aufbewahrt, auch nicht in anonymer Form.</p>
+
+    <h2>Die Kopie im Android-Backup</h2>
+    <p>
+      Wenn auf deinem Telefon das System-Backup eingeschaltet ist, liegt eine Kopie der App-Daten in
+      deinem Google-Konto. Sie wird von Google verwaltet, nicht von Whale Drop. Nach dem Löschen wird
+      sie beim nächsten Backup ersetzt, meist innerhalb eines Tages. Du kannst sie sofort in den
+      Backup-Einstellungen deines Telefons oder in Google Drive unter „Sicherungen“ entfernen.
+    </p>
+
+    <h2>Daten, die wir aufbewahren</h2>
+    <p>
+      Keine, es gibt also nichts, dessen Löschung du bei uns beantragen müsstest. Das Einzige, was
+      dein Telefon verlassen kann, ist der ungefähre Standort, einmal täglich und nur, wenn du „An
+      das Wetter anpassen“ einschaltest: Er geht für diese eine Abfrage an den Dienst Open-Meteo, und
+      die App speichert ihn nicht. Die Einzelheiten stehen in der
+      <a href="/privacy/">Datenschutzerklärung</a>.
+    </p>
+
+    <h2>Kontakt</h2>
+    <p>Bei Fragen oder Anliegen kannst du schreiben an: <a href="mailto:info@whaledrop.app">info@whaledrop.app</a></p>
+
+    <footer>Whale Drop — persönliche Trink-App für Android.</footer>
+  </section>
+
+  <!-- ===================================================== FRANÇAIS -->
+  <section data-lang="fr" lang="fr" data-title="Whale Drop — Supprimer tes données" data-description="Comment supprimer tes données dans Whale Drop, l'application Android pour boire plus d'eau. Aucune donnée n'est conservée sur des serveurs : tout est sur ton téléphone et c'est toi qui l'effaces.">
+    <h1>Supprimer tes données — Whale Drop</h1>
+    <p class="updated">Dernière mise à jour : 19 septembre 2026</p>
+
+    <p class="lead">
+      <strong>Whale Drop ne conserve aucune de tes données sur des serveurs.</strong> L'application n'a
+      ni serveur ni compte : tout ce que tu enregistres se trouve uniquement sur ton téléphone, et tu
+      peux le supprimer quand tu veux, sans rien demander à personne.
+    </p>
+
+    <h2>Comment supprimer tes données</h2>
+    <p>Depuis ton téléphone Android, de l'une de ces deux façons :</p>
+    <ol>
+      <li><strong>Effacer les données de l'application.</strong> Ouvre les Paramètres d'Android, va
+          dans Applications, choisis Whale Drop, puis Stockage, et touche « Effacer les données »
+          (sur certains téléphones « Vider l'espace de stockage »). L'application reste installée et
+          repart de zéro.</li>
+      <li><strong>Désinstaller l'application.</strong> Toutes ses données sont supprimées avec elle.</li>
+    </ol>
+    <p>La suppression est immédiate et ne peut pas être annulée.</p>
+
+    <h2>Quelles données sont supprimées</h2>
+    <p>Tout ce que l'application a enregistré :</p>
+    <ul>
+      <li>les boissons enregistrées, avec quantité, boisson, date et heure ;</li>
+      <li>le profil utilisé pour calculer ton objectif : sexe, année de naissance, taille, poids, niveau
+          d'activité, grossesse ou allaitement ;</li>
+      <li>tes favoris, les paliers atteints et tous tes réglages.</li>
+    </ul>
+    <p>Rien n'est conservé, même sous forme anonyme.</p>
+
+    <h2>La copie dans la sauvegarde Android</h2>
+    <p>
+      Si la sauvegarde du système est activée sur ton téléphone, une copie des données de
+      l'application se trouve dans ton compte Google. Elle est gérée par Google, pas par Whale Drop.
+      Après la suppression, elle est remplacée à la sauvegarde suivante, en général sous un jour. Tu
+      peux la retirer tout de suite depuis les paramètres de sauvegarde du téléphone ou depuis Google
+      Drive, dans Sauvegardes.
+    </p>
+
+    <h2>Données conservées par nous</h2>
+    <p>
+      Aucune, il n'y a donc rien dont tu aies à nous demander la suppression. La seule chose qui peut
+      sortir de ton téléphone est la position approximative, une fois par jour et seulement si tu
+      actives « S'adapter à la météo » : elle part vers le service Open-Meteo pour cette seule requête
+      et l'application ne l'enregistre pas. Les détails sont dans la
+      <a href="/privacy/">politique de confidentialité</a>.
+    </p>
+
+    <h2>Contact</h2>
+    <p>Pour toute question ou demande, tu peux écrire à : <a href="mailto:info@whaledrop.app">info@whaledrop.app</a></p>
+
+    <footer>Whale Drop — application personnelle d'hydratation pour Android.</footer>
+  </section>
+
+  <!-- ===================================================== ESPAÑOL -->
+  <section data-lang="es" lang="es" data-title="Whale Drop — Eliminar tus datos" data-description="Cómo eliminar tus datos de Whale Drop, la app de Android para beber más agua. No se conserva ningún dato en servidores: todo está en tu teléfono y lo borras tú.">
+    <h1>Eliminar tus datos — Whale Drop</h1>
+    <p class="updated">Última actualización: 19 de septiembre de 2026</p>
+
+    <p class="lead">
+      <strong>Whale Drop no conserva ningún dato tuyo en servidores.</strong> La app no tiene servidores
+      ni cuentas: todo lo que registras está solo en tu teléfono, y puedes eliminarlo cuando quieras,
+      sin pedírselo a nadie.
+    </p>
+
+    <h2>Cómo eliminar tus datos</h2>
+    <p>Desde tu teléfono Android, de una de estas dos formas:</p>
+    <ol>
+      <li><strong>Borrar los datos de la app.</strong> Abre los Ajustes de Android, ve a Aplicaciones,
+          elige Whale Drop, luego Almacenamiento, y toca «Borrar datos» (en algunos teléfonos «Borrar
+          almacenamiento»). La app sigue instalada y empieza de cero.</li>
+      <li><strong>Desinstalar la app.</strong> Todos sus datos se eliminan junto con ella.</li>
+    </ol>
+    <p>La eliminación es inmediata y no se puede deshacer.</p>
+
+    <h2>Qué datos se eliminan</h2>
+    <p>Todo lo que la app ha guardado:</p>
+    <ul>
+      <li>las bebidas registradas, con cantidad, bebida, fecha y hora;</li>
+      <li>el perfil con el que se calcula tu objetivo: sexo, año de nacimiento, altura, peso, nivel de
+          actividad, embarazo o lactancia;</li>
+      <li>tus favoritos, los hitos alcanzados y todos tus ajustes.</li>
+    </ul>
+    <p>No se conserva nada, ni siquiera de forma anónima.</p>
+
+    <h2>La copia en la copia de seguridad de Android</h2>
+    <p>
+      Si tu teléfono tiene activada la copia de seguridad del sistema, hay una copia de los datos de
+      la app en tu cuenta de Google. La gestiona Google, no Whale Drop. Tras la eliminación se
+      sustituye en la siguiente copia, normalmente en un día. Puedes quitarla enseguida desde los
+      ajustes de copia de seguridad del teléfono o desde Google Drive, en Copias de seguridad.
+    </p>
+
+    <h2>Datos conservados por nosotros</h2>
+    <p>
+      Ninguno, así que no hay nada cuya eliminación tengas que pedirnos. Lo único que puede salir de tu
+      teléfono es la ubicación aproximada, una vez al día y solo si activas «Ajustar según el clima»: va al
+      servicio Open-Meteo para esa única consulta y la app no la guarda. Los detalles están en la
+      <a href="/privacy/">política de privacidad</a>.
+    </p>
+
+    <h2>Contacto</h2>
+    <p>Para cualquier pregunta o solicitud puedes escribir a: <a href="mailto:info@whaledrop.app">info@whaledrop.app</a></p>
+
+    <footer>Whale Drop — app personal de hidratación para Android.</footer>
+  </section>
+</main>
+
+<script>
+  // Pagina x-default (è l'URL dato alla Play Console per l'eliminazione dei dati): i link ?lang=xx
+  // vanno alla pagina statica /xx/delete-data/ generata da tools/build_i18n.py; senza parametro
+  // mostra la lingua del browser se è fra le cinque, altrimenti l'inglese. Titolo e description
+  // vengono da data-title e data-description della sezione. Senza JavaScript la classe "nojs" non
+  // viene tolta e restano visibili tutte le sezioni.
+  (function () {
+    var supported = ['it', 'en', 'de', 'fr', 'es'];
+    var param = new URLSearchParams(location.search).get('lang');
+    if (supported.indexOf(param) >= 0) { location.replace('/' + param + '/delete-data/' + location.hash); return; }
+    var browser = (navigator.language || 'en').slice(0, 2).toLowerCase();
+    var lang = supported.indexOf(browser) >= 0 ? browser : 'en';
+    var html = document.documentElement;
+    var section = document.querySelector('section[data-lang="' + lang + '"]');
+    html.setAttribute('data-active', lang);
+    html.setAttribute('lang', lang);
+    document.title = section.getAttribute('data-title');
+    document.querySelector('meta[name="description"]').setAttribute('content', section.getAttribute('data-description'));
+    var links = document.querySelectorAll('nav.lang a');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].getAttribute('data-pick') === lang) links[i].setAttribute('aria-current', 'true');
+      else links[i].removeAttribute('aria-current');
+    }
+  })();
+</script>
+<script>document.documentElement.className = document.documentElement.className.replace('nojs', '');</script>
+</body>
+</html>
