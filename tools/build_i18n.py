@@ -16,10 +16,12 @@ import json
 import pathlib
 import re
 import sys
+import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://whaledrop.app"
 LANGS = ["it", "en", "de", "fr", "es"]
+PLAY_URL = "https://play.google.com/store/apps/details?id=com.simofano.whaledrop&hl=en"
 # Le pagine di solo testo, tutte con la stessa forma: una <section data-lang> per lingua.
 SECTIONED = ["privacy/", "delete-data/"]
 
@@ -67,6 +69,41 @@ def lang_nav(text, lang, path):
     return sub(pattern, link, text, expect=len(LANGS))
 
 
+def play_downloads():
+    """Scaglione pubblico dei download letto dalla scheda Play in inglese ("5K+" -> 5000).
+
+    None se Play non risponde o ha cambiato forma: allora il contatore resta quello scritto a mano
+    nel dizionario I18N, e la pubblicazione va avanti lo stesso."""
+    try:
+        req = urllib.request.Request(PLAY_URL, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/131.0 Safari/537.36",
+            "Accept-Language": "en"})
+        page = urllib.request.urlopen(req, timeout=20).read().decode("utf-8")
+    except Exception as e:
+        print(f"build_i18n: scheda Play non raggiungibile ({e}), contatore dal dizionario")
+        return None
+    m = re.search(r'>([0-9][0-9.,]*)([KMB]?)\+</div><div class="[^"]*">Downloads</div>', page)
+    if not m:
+        print("build_i18n: download non trovati nella scheda Play, contatore dal dizionario")
+        return None
+    return int(float(m.group(1).replace(",", "")) * {"": 1, "K": 10**3, "M": 10**6, "B": 10**9}[m.group(2)])
+
+
+def downloads_label(n, lang):
+    """Il contatore nello stile dell'app Play Store ("Oltre 5K"), con le cifre scritte come le
+    scrive Play in ogni lingua. &nbsp; tiene il numero attaccato all'unità."""
+    prefix = {"it": "Oltre", "en": "Over", "de": "Über", "fr": "Plus&nbsp;de", "es": "Más&nbsp;de"}[lang]
+    if lang == "de":
+        num = f"{n:,}".replace(",", ".")
+    elif n >= 10**6 and n % 10**6 == 0:
+        num = f"{n // 10**6}" + {"it": "&nbsp;Mln", "en": "M", "fr": "&nbsp;M", "es": "&nbsp;M"}[lang]
+    elif n >= 10**3 and n % 10**3 == 0:
+        num = f"{n // 10**3}" + {"it": "K", "en": "K", "fr": "&nbsp;k", "es": "&nbsp;mil"}[lang]
+    else:
+        num = str(n)
+    return f"<small>{prefix}</small> {num}"
+
+
 def build_landing():
     src = (ROOT / "index.html").read_text(encoding="utf-8")
     check_hreflang(src, "index.html", "")
@@ -76,6 +113,11 @@ def build_landing():
     i18n = json.loads(re.sub(r"(?m)^(\s*)(\w+): \{", r'\1"\2": {', m.group(1)))
     if set(LANGS) - set(i18n):
         fail(f"index.html: I18N non ha {sorted(set(LANGS) - set(i18n))}")
+    downloads = play_downloads()
+    if downloads:
+        for lang in LANGS:
+            i18n[lang]["band.4n"] = downloads_label(downloads, lang)
+        print(f"build_i18n: download dalla scheda Play: {downloads}+")
     # Le pagine generate sono statiche: niente dizionario e, soprattutto, niente smistamento della
     # radice, che qui rimanderebbe la pagina a se stessa in un ciclo infinito.
     page = src[:m.start()] + "\n" + src[m.end():]
