@@ -90,18 +90,15 @@ def play_downloads():
 
 
 def downloads_label(n, lang):
-    """Il contatore nello stile dell'app Play Store ("Oltre 5K"), con le cifre scritte come le
-    scrive Play in ogni lingua. &nbsp; tiene il numero attaccato all'unità."""
-    prefix = {"it": "Oltre", "en": "Over", "de": "Über", "fr": "Plus&nbsp;de", "es": "Más&nbsp;de"}[lang]
+    """Il contatore numerico con il più dopo ("5K+"), con le cifre scritte come le scrive la scheda
+    Play in ogni lingua. &nbsp; tiene il numero attaccato all'unità."""
     if lang == "de":
-        num = f"{n:,}".replace(",", ".")
-    elif n >= 10**6 and n % 10**6 == 0:
-        num = f"{n // 10**6}" + {"it": "&nbsp;Mln", "en": "M", "fr": "&nbsp;M", "es": "&nbsp;M"}[lang]
-    elif n >= 10**3 and n % 10**3 == 0:
-        num = f"{n // 10**3}" + {"it": "K", "en": "K", "fr": "&nbsp;k", "es": "&nbsp;mil"}[lang]
-    else:
-        num = str(n)
-    return f"<small>{prefix}</small> {num}"
+        return f"{n:,}".replace(",", ".") + "+"
+    if n >= 10**6 and n % 10**6 == 0:
+        return f"{n // 10**6}" + {"it": "&nbsp;Mln", "en": "M", "fr": "&nbsp;M", "es": "&nbsp;M"}[lang] + "+"
+    if n >= 10**3 and n % 10**3 == 0:
+        return f"{n // 10**3}" + {"it": "K", "en": "K", "fr": "&nbsp;k", "es": "&nbsp;mil"}[lang] + "+"
+    return f"{n}+"
 
 
 def build_landing():

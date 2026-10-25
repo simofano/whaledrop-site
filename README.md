@@ -27,8 +27,8 @@ helps you drink more water. Static pages served by GitHub Pages on the `whaledro
   run `python tools/build_i18n.py` locally to preview them. It stops with an error if a source
   page no longer has the shape it expects (for example a `data-i18n` key missing in a language).
   It also sets the downloads counter (`band.4n`) from the public Play listing: it reads the
-  English bucket ("5K+") and writes it in each language the way the Play Store app does
-  ("Oltre 5K", "Over 5K", "Über 5.000", "Plus de 5 k", "Más de 5 mil"). If Play cannot be
+  English bucket ("10K+") and writes it in each language the way the Play listing does
+  ("10K+", "10K+", "10.000+", "10 k+", "10 mil+"). If Play cannot be
   reached or changes its markup, the values written in the `I18N` dictionary are used instead.
   The workflow also runs once a day, so the counter moves up on its own when the bucket does.
 - `img/`: `promo.mp4` (muted, 960 px, looping) with `promo-poster.jpg`, the two gym photos, the
