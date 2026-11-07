@@ -152,9 +152,7 @@
   /* Schermate: striscia scorrevole di telefoni */
   .shots { display: flex; gap: 1rem; overflow-x: auto; padding: .5rem .25rem 1.25rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
   .shots figure { margin: 0; flex: 0 0 auto; width: clamp(11rem, 22vw, 15rem); scroll-snap-align: start; }
-  .shots img { width: 100%; height: auto; display: block; border-radius: 22px; border: 6px solid var(--ink); box-shadow: 0 16px 34px rgba(15,34,56,.22); background: var(--ink); }
-  @media (prefers-color-scheme: dark) { .shots img { border-color: #2A415A; background: #2A415A; } }
-  .shots figcaption { text-align: center; color: var(--muted); font-size: .9rem; margin-top: .6rem; }
+  .shots img { width: 100%; height: auto; display: block; border-radius: 18px; box-shadow: 0 16px 34px rgba(15,34,56,.22); }
 </style>
 </head>
 <body>
@@ -219,12 +217,13 @@
     <div class="wrap">
     <h2 data-i18n="shots.title">Schermate</h2>
       <div class="shots">
-          <figure><img src="/img/shots/it/1.png" data-shot="1" alt="" loading="lazy"><figcaption data-i18n="shots.c1">Benvenuto</figcaption></figure>
-          <figure><img src="/img/shots/it/2.png" data-shot="2" alt="" loading="lazy"><figcaption data-i18n="shots.c2">La giornata</figcaption></figure>
-          <figure><img src="/img/shots/it/6.png" data-shot="6" alt="" loading="lazy"><figcaption data-i18n="shots.c6">Bevi in tre passi</figcaption></figure>
-          <figure><img src="/img/shots/it/3.png" data-shot="3" alt="" loading="lazy"><figcaption data-i18n="shots.c3">Statistiche</figcaption></figure>
-          <figure><img src="/img/shots/it/4.png" data-shot="4" alt="" loading="lazy"><figcaption data-i18n="shots.c4">Adatta al meteo</figcaption></figure>
-          <figure><img src="/img/shots/it/5.png" data-shot="5" alt="" loading="lazy"><figcaption data-i18n="shots.c5">Promemoria</figcaption></figure>
+          <figure><img src="/img/shots/it/1.webp" width="540" height="1080" alt="" loading="lazy"></figure>
+          <figure><img src="/img/shots/it/2.webp" width="540" height="1080" alt="" loading="lazy"></figure>
+          <figure><img src="/img/shots/it/3.webp" width="540" height="1080" alt="" loading="lazy"></figure>
+          <figure><img src="/img/shots/it/4.webp" width="540" height="1080" alt="" loading="lazy"></figure>
+          <figure><img src="/img/shots/it/5.webp" width="540" height="1080" alt="" loading="lazy"></figure>
+          <figure><img src="/img/shots/it/6.webp" width="540" height="1080" alt="" loading="lazy"></figure>
+          <figure><img src="/img/shots/it/7.webp" width="540" height="1080" alt="" loading="lazy"></figure>
       </div>
     </div>
   </section>
@@ -280,7 +279,6 @@
       "f5.t": "Statistiche e traguardi", "f5.p": "Giorno, settimana e mese, ripartizione per bevanda, giorni di fila con l'obiettivo raggiunto e traguardi da sbloccare.",
       "f6.t": "Widget sulla Home", "f6.p": "L'anello del giorno sempre sotto gli occhi, senza aprire l'app: ti mostra quanto dovresti aver bevuto fino a quell'ora e dove sei adesso.",
       "shots.title": "Schermate", 
-      "shots.c1": "Benvenuto", "shots.c2": "La giornata", "shots.c3": "Statistiche", "shots.c4": "Adatta al meteo", "shots.c5": "Promemoria", "shots.c6": "Bevi in tre passi",
       "gallery.c2": "Ti raggiunge anche in palestra.", "gallery.c3": "Whale Drop, la compagna di allenamento.",
       "privacy.t": "I tuoi dati restano sul telefono",
       "privacy.p": "La privacy prima di tutto: non salviamo né vendiamo i tuoi dati personali. Escono solo la richiesta meteo, se la attivi, e statistiche d'uso anonime.",
@@ -303,7 +301,6 @@
       "f5.t": "Stats and achievements", "f5.p": "Day, week and month, breakdown by drink, days in a row on target and badges to unlock.",
       "f6.t": "Home screen widget", "f6.p": "Today's ring always in sight, without opening the app: it shows how much you should have drunk by that hour and where you are now.",
       "shots.title": "Screens", 
-      "shots.c1": "Welcome", "shots.c2": "Your day", "shots.c3": "Stats", "shots.c4": "Adjust to weather", "shots.c5": "Reminders", "shots.c6": "Log in three steps",
       "gallery.c2": "It reaches you at the gym too.", "gallery.c3": "Whale Drop, your training partner.",
       "privacy.t": "Your data stays on your phone",
       "privacy.p": "Privacy comes first: we never store or sell your personal data. Only the weather request, if you turn it on, and anonymous usage statistics leave the phone.",
@@ -326,7 +323,6 @@
       "f5.t": "Statistiken und Erfolge", "f5.p": "Tag, Woche und Monat, Aufteilung nach Getränk, Tage in Folge am Ziel und Abzeichen zum Freischalten.",
       "f6.t": "Widget auf dem Homescreen", "f6.p": "Der Ring des Tages immer im Blick, ohne die App zu öffnen: Er zeigt dir, wie viel du bis zu dieser Uhrzeit getrunken haben solltest und wo du gerade stehst.",
       "shots.title": "Bildschirme", 
-      "shots.c1": "Willkommen", "shots.c2": "Dein Tag", "shots.c3": "Statistiken", "shots.c4": "Ans Wetter anpassen", "shots.c5": "Erinnerungen", "shots.c6": "Eintragen in drei Schritten",
       "gallery.c2": "Erreicht dich auch im Fitnessstudio.", "gallery.c3": "Whale Drop, dein Trainingspartner.",
       "privacy.t": "Deine Daten bleiben auf dem Telefon",
       "privacy.p": "Privatsphäre zuerst: Wir speichern und verkaufen deine persönlichen Daten nicht. Nur die Wetteranfrage, wenn du sie einschaltest, und anonyme Nutzungsstatistiken verlassen das Telefon.",
@@ -349,7 +345,6 @@
       "f5.t": "Statistiques et trophées", "f5.p": "Jour, semaine et mois, répartition par boisson, jours d'affilée à l'objectif et badges à débloquer.",
       "f6.t": "Widget sur l'écran d'accueil", "f6.p": "L'anneau du jour toujours sous les yeux, sans ouvrir l'app : il te montre combien tu devrais avoir bu à cette heure et où tu en es.",
       "shots.title": "Écrans", 
-      "shots.c1": "Bienvenue", "shots.c2": "Ta journée", "shots.c3": "Statistiques", "shots.c4": "Adapter à la météo", "shots.c5": "Rappels", "shots.c6": "Enregistrer en trois étapes",
       "gallery.c2": "Il te suit jusqu'à la salle.", "gallery.c3": "Whale Drop, ta partenaire d'entraînement.",
       "privacy.t": "Tes données restent sur ton téléphone",
       "privacy.p": "La vie privée avant tout : nous ne conservons ni ne vendons tes données personnelles. Seules la requête météo, si tu l'actives, et des statistiques d'utilisation anonymes quittent le téléphone.",
@@ -372,7 +367,6 @@
       "f5.t": "Estadísticas y logros", "f5.p": "Día, semana y mes, reparto por bebida, días seguidos con el objetivo cumplido e insignias por desbloquear.",
       "f6.t": "Widget en la pantalla de inicio", "f6.p": "El anillo del día siempre a la vista, sin abrir la app: te muestra cuánto deberías haber bebido a esa hora y dónde estás ahora.",
       "shots.title": "Pantallas", 
-      "shots.c1": "Bienvenida", "shots.c2": "Tu día", "shots.c3": "Estadísticas", "shots.c4": "Adaptar al tiempo", "shots.c5": "Recordatorios", "shots.c6": "Registrar en tres pasos",
       "gallery.c2": "Te alcanza también en el gimnasio.", "gallery.c3": "Whale Drop, tu compañera de entrenamiento.",
       "privacy.t": "Tus datos se quedan en el teléfono",
       "privacy.p": "La privacidad es lo primero: no guardamos ni vendemos tus datos personales. Solo salen del teléfono la petición del tiempo, si la activas, y estadísticas de uso anónimas.",
